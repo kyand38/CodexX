@@ -1,6 +1,7 @@
 import { DataTypes, type Sequelize, Model, type Optional } from 'sequelize';
 import * as bcrypt from 'bcrypt';
 
+//Define User model with attributes
 export interface UserAttributes {
     id: number;
     username: string;
@@ -8,10 +9,13 @@ export interface UserAttributes {
     password: string;
 }
 
+// Define what attributes are required for creating a User (id is optional)
 interface UserCreationAttributes extends Optional<UserAttributes, 'id'> { }
 
-// Define the User model class
-export class User extends Model<UserAttributes, UserCreationAttributes> implements UserAttributes {
+// The User class extends Sequelize's Model class
+export class User extends Model<UserAttributes, UserCreationAttributes>
+
+    implements UserAttributes {
     public id!: number;
     public username!: string;
     public email!: string;
@@ -20,14 +24,13 @@ export class User extends Model<UserAttributes, UserCreationAttributes> implemen
     public readonly createdAt!: Date;
     public readonly updatedAt!: Date;
 
-    // Method to hash the password
+    // Method to hash a user's password before saving
     public async setPassword(password: string) {
         const saltRounds = 10;
         this.password = await bcrypt.hash(password, saltRounds);
     }
 }
-
-// Factory function to initialize the User model
+// Define the User model's structure and hooks (beforeCreate & beforeUpdate)
 export function UserFactory(sequelize: Sequelize): typeof User {
     User.init(
         {
@@ -52,16 +55,18 @@ export function UserFactory(sequelize: Sequelize): typeof User {
             },
         },
         {
-            sequelize, // Pass the Sequelize instance
+            sequelize,
             tableName: 'users',
             timestamps: true,
+            hooks: {
+                beforeCreate: async (user: User) => {
+                    await user.setPassword(user.password);
+                  },
+                  beforeUpdate: async (user: User) => {
+                    await user.setPassword(user.password);
+                  },
+            }
         }
     );
-
-    // Hook to hash password before saving
-    User.beforeCreate(async (user) => {
-        user.password = await bcrypt.hash(user.password, 10);
-    });
-
     return User;
 }
