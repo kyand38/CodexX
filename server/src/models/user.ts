@@ -10,7 +10,7 @@ export interface UserAttributes {
 
 interface UserCreationAttributes extends Optional<UserAttributes, 'id'> { }
 
-export class UserAttributes extends Model<UserAttributes, UserCreationAttributes>
+export class User extends Model<UserAttributes, UserCreationAttributes>
 
     implements UserAttributes {
     public id!: number;
@@ -29,35 +29,40 @@ export class UserAttributes extends Model<UserAttributes, UserCreationAttributes
 
 export function UserFactory(sequelize: Sequelize): typeof User {
     User.init(
-    {
-        id: {
-            type: DataTypes.INTEGER,
-            autoIncrement: true,
-            primaryKey: true,
+        {
+            id: {
+                type: DataTypes.INTEGER,
+                autoIncrement: true,
+                primaryKey: true,
+            },
+            username: {
+                type: DataTypes.STRING,
+                allowNull: false,
+                unique: true,
+            },
+            email: {
+                type: DataTypes.STRING,
+                allowNull: false,
+                unique: true,
+            },
+            password: {
+                type: DataTypes.STRING,
+                allowNull: false,
+            },
         },
-        username: {
-            type: DataTypes.STRING,
-            allowNull: false,
-            unique: true,
-        },
-        email: {
-            type: DataTypes.STRING,
-            allowNull: false,
-            unique: true,
-        },
-        password: {
-            type: DataTypes.STRING,
-            allowNull: false,
-        },
-    },
-    {
-        sequelize,
-        tableName: 'users',
-        timestamps: true,
-    }
-        User.beforeCreate(async (user) => {
-            const saltRounds = 10;
-            user.password = await bcrypt.hash(user.password, saltRounds);
-    });
+        {
+            sequelize,
+            tableName: 'users',
+            timestamps: true,
+            hooks: {
+                beforeCreate: async (user: User) => {
+                    await user.setPassword(user.password);
+                  },
+                  beforeUpdate: async (user: User) => {
+                    await user.setPassword(user.password);
+                  },
+            }
+        }
+    );
     return User;
 }
