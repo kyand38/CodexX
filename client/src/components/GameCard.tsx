@@ -1,22 +1,40 @@
 import React from 'react';
 
-interface Game {
+interface Platform {
   id: number;
-  title: string;
-  genre: string;
-  platform: string;
+  name: string;
 }
 
 interface GameCardProps {
-  game: Game;
+  background_image: string;
+  name: string;
+  platforms: Platform[];
+  rating: number;
+  seeMoreButton: string;
 }
 
-const GameCard: React.FC<GameCardProps> = ({ game }) => {
+const GameCard: React.FC<GameCardProps> = ({
+  background_image,
+  name,
+  platforms,
+  rating,
+  seeMoreButton,
+}: GameCardProps) => {
   return (
     <div className="game-card">
-      <h3>{game.title}</h3>
-      <p>Genre: {game.genre}</p>
-      <p>Platform: {game.platform}</p>
+      <img src={background_image} alt={name} className="game-card__image" />
+      <h3 className="game-card__title">{name}</h3>
+      <div className="game-card__platforms">
+        {platforms.map((platform) => (
+          <span key={platform.id} className="platform">
+            {platform.name}
+          </span>
+        ))}
+      </div>
+      <div className="game-card__rating">Rating: {rating}</div>
+      <a href={seeMoreButton} className="game-card__see-more">
+        See More
+      </a>
     </div>
   );
 };

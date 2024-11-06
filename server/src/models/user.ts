@@ -1,5 +1,5 @@
 import { DataTypes, type Sequelize, Model, type Optional } from 'sequelize';
-import bcrypt from 'bcrypt';
+import * as bcrypt from 'bcrypt';
 
 export interface UserAttributes {
     id: number;
@@ -10,9 +10,8 @@ export interface UserAttributes {
 
 interface UserCreationAttributes extends Optional<UserAttributes, 'id'> { }
 
-export class UserAttributes extends Model<UserAttributes, UserCreationAttributes>
-
-    implements UserAttributes {
+// Define the User model class
+export class User extends Model<UserAttributes, UserCreationAttributes> implements UserAttributes {
     public id!: number;
     public username!: string;
     public email!: string;
@@ -21,43 +20,48 @@ export class UserAttributes extends Model<UserAttributes, UserCreationAttributes
     public readonly createdAt!: Date;
     public readonly updatedAt!: Date;
 
+    // Method to hash the password
     public async setPassword(password: string) {
         const saltRounds = 10;
         this.password = await bcrypt.hash(password, saltRounds);
     }
 }
 
+// Factory function to initialize the User model
 export function UserFactory(sequelize: Sequelize): typeof User {
     User.init(
-    {
-        id: {
-            type: DataTypes.INTEGER,
-            autoIncrement: true,
-            primaryKey: true,
+        {
+            id: {
+                type: DataTypes.INTEGER,
+                autoIncrement: true,
+                primaryKey: true,
+            },
+            username: {
+                type: DataTypes.STRING,
+                allowNull: false,
+                unique: true,
+            },
+            email: {
+                type: DataTypes.STRING,
+                allowNull: false,
+                unique: true,
+            },
+            password: {
+                type: DataTypes.STRING,
+                allowNull: false,
+            },
         },
-        username: {
-            type: DataTypes.STRING,
-            allowNull: false,
-            unique: true,
-        },
-        email: {
-            type: DataTypes.STRING,
-            allowNull: false,
-            unique: true,
-        },
-        password: {
-            type: DataTypes.STRING,
-            allowNull: false,
-        },
-    },
-    {
-        sequelize,
-        tableName: 'users',
-        timestamps: true,
-    }
-        User.beforeCreate(async (user) => {
-            const saltRounds = 10;
-            user.password = await bcrypt.hash(user.password, saltRounds);
+        {
+            sequelize, // Pass the Sequelize instance
+            tableName: 'users',
+            timestamps: true,
+        }
+    );
+
+    // Hook to hash password before saving
+    User.beforeCreate(async (user) => {
+        user.password = await bcrypt.hash(user.password, 10);
     });
+
     return User;
 }
