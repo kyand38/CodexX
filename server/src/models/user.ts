@@ -1,5 +1,5 @@
 import { DataTypes, type Sequelize, Model, type Optional } from 'sequelize';
-import bcrypt from 'bcrypt';
+import * as bcrypt from 'bcrypt';
 
 export interface UserAttributes {
     id: number;
@@ -21,12 +21,14 @@ export class User extends Model<UserAttributes, UserCreationAttributes>
     public readonly createdAt!: Date;
     public readonly updatedAt!: Date;
 
+    // Method to hash the password
     public async setPassword(password: string) {
         const saltRounds = 10;
         this.password = await bcrypt.hash(password, saltRounds);
     }
 }
 
+// Factory function to initialize the User model
 export function UserFactory(sequelize: Sequelize): typeof User {
     User.init(
         {
