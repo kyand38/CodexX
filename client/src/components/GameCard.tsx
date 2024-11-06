@@ -1,32 +1,32 @@
 import React from 'react';
 import { concatGenres } from '../utils/helpers';
 
-interface RawgGame {
-  id: number;
-  name: string;
-  description: string;
-  metacritic: number;
-  released: string;
-  background_image: string;
-  website: string;
-  playtime: number;
-  platforms: string[];
-  developers: string[];
-  genres: {Array<object>;}
-  publishers: string[];
-  esrb_rating: string;
-}
 
-interface GameCardProp {
-  game: RawgGame;
-}
 
-const GameCard: React.FC<GameCardProps> = ({ game }) => {
+const GameCard: React.FC<GameCardProps> = ({
+  background_image,
+  name,
+  platforms,
+  rating,
+  seeMoreButton,
+}: GameCardProps) => {
   return (
     <div className="game-card">
-      <h3>{game.name}</h3>
-      <p>Genre: {concatGenres(game)}</p>
-      <p>Platform: {game.platforms}</p>
+
+      <img src={background_image} alt={name} className="game-card__image" />
+      <h3 className="game-card__title">{name}</h3>
+      <div className="game-card__platforms">
+        {platforms.map((platform) => (
+          <span key={platform.id} className="platform">
+            {platform.name}
+          </span>
+        ))}
+      </div>
+      <div className="game-card__rating">Rating: {rating}</div>
+      <a href={seeMoreButton} className="game-card__see-more">
+        See More
+      </a>
+
     </div>
   );
 };

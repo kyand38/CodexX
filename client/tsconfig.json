@@ -15,7 +15,7 @@
 
     /* Module Handling */
     "module": "ESNext",
-    "moduleResolution": "Bundler",
+    "moduleResolution": "node",   // Keep only this line
     "allowSyntheticDefaultImports": true,
     "allowImportingTsExtensions": true,
     "isolatedModules": true,
@@ -28,6 +28,12 @@
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true,
-    "noUncheckedSideEffectImports": true
+    "noUncheckedSideEffectImports": true,
+
+    /* JSX and Module Resolution */
+    "jsx": "react-jsx",
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "noImplicitAny": true
   }
 }
