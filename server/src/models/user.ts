@@ -38,10 +38,26 @@ export function UserFactory(sequelize: Sequelize): typeof User {
         username: {
             type: DataTypes.STRING,
             allowNull: false,
+            unique: true,
         },
         email: {
             type: DataTypes.STRING,
-            allow
-        }
-    })
+            allowNull: false,
+            unique: true,
+        },
+        password: {
+            type: DataTypes.STRING,
+            allowNull: false,
+        },
+    },
+    {
+        sequelize,
+        tableName: 'users',
+        timestamps: true,
+    }
+        User.beforeCreate(async (user) => {
+            const saltRounds = 10;
+            user.password = await bcrypt.hash(user.password, saltRounds);
+    });
+    return User;
 }
