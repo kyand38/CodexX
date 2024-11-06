@@ -1,17 +1,7 @@
+import { RawgGame } from '../interfaces/RawgGame';
+
 import dotenv from 'dotenv';
 dotenv.config();
-
-// export interface Game {
-//   id: number;
-//   name: string;
-//   description: string;
-//   metacritic: number;
-//   released: string;
-//   background_image: string;
-//   website: string;
-//   playtime: number;
-//   metacritic_url: string;
-// }
 
 // class GameAPI {
 //   id: number;
@@ -64,14 +54,14 @@ class RawgService {
 
   }
 
-  async getGames(pageSize: number, page: number) {
+  async getGames() {
 
-    const response = await fetch(`${this.REQUEST_URL}/games?page=${page}&page_size=${pageSize}&key=${this.API_KEY}`, {
+    const response = await fetch(`${this.REQUEST_URL}/games?key=${this.API_KEY}`, {
       method: 'GET',
     });
 
     const games = await response.json();
-    console.log(games);
+    // console.log(games);
     return JSON.parse(games);
 
   }
@@ -82,9 +72,9 @@ class RawgService {
       method: 'GET',
     });
 
-    const game = await response.json();
-    console.log(game);
-    return JSON.parse(game);
+    const results = await response.json();
+    // console.log(game);
+    return JSON.parse(results);
 
   }
 

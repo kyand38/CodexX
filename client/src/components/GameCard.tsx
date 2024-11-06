@@ -1,17 +1,7 @@
 import React from 'react';
+import { concatGenres } from '../utils/helpers';
 
-interface Platform {
-  id: number;
-  name: string;
-}
 
-interface GameCardProps {
-  background_image: string;
-  name: string;
-  platforms: Platform[];
-  rating: number;
-  seeMoreButton: string;
-}
 
 const GameCard: React.FC<GameCardProps> = ({
   background_image,
@@ -22,6 +12,7 @@ const GameCard: React.FC<GameCardProps> = ({
 }: GameCardProps) => {
   return (
     <div className="game-card">
+
       <img src={background_image} alt={name} className="game-card__image" />
       <h3 className="game-card__title">{name}</h3>
       <div className="game-card__platforms">
@@ -35,6 +26,7 @@ const GameCard: React.FC<GameCardProps> = ({
       <a href={seeMoreButton} className="game-card__see-more">
         See More
       </a>
+
     </div>
   );
 };
