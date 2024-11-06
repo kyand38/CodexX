@@ -1,6 +1,7 @@
 import { DataTypes, type Sequelize, Model, type Optional } from 'sequelize';
 import bcrypt from 'bcrypt';
 
+//Define User model with attributes
 export interface UserAttributes {
     id: number;
     username: string;
@@ -8,8 +9,10 @@ export interface UserAttributes {
     password: string;
 }
 
+// Define what attributes are required for creating a User (id is optional)
 interface UserCreationAttributes extends Optional<UserAttributes, 'id'> { }
 
+// The User class extends Sequelize's Model class
 export class User extends Model<UserAttributes, UserCreationAttributes>
 
     implements UserAttributes {
@@ -21,12 +24,13 @@ export class User extends Model<UserAttributes, UserCreationAttributes>
     public readonly createdAt!: Date;
     public readonly updatedAt!: Date;
 
+    // Method to hash a user's password before saving
     public async setPassword(password: string) {
         const saltRounds = 10;
         this.password = await bcrypt.hash(password, saltRounds);
     }
 }
-
+// Define the User model's structure and hooks (beforeCreate & beforeUpdate)
 export function UserFactory(sequelize: Sequelize): typeof User {
     User.init(
         {

@@ -2,6 +2,7 @@
 // It includes an additional rating attribute to represent the user’s rating of the game.
 import { DataTypes, type Sequelize, Model, type Optional } from 'sequelize';
 
+// Define the LibraryEntry model attributes
 export interface LibraryEntryAttributes {
     id: number;
     userId: number;
@@ -9,8 +10,10 @@ export interface LibraryEntryAttributes {
     rating: number;
 }
 
+// Define what attributes are required for creating a LibraryEntry (id is optional)
 interface LibraryEntryCreationAttributes extends Optional<LibraryEntryAttributes, 'id'> {}
 
+//The LibraryEntry class extends Sequelize's Model class
 export class LibraryEntry extends Model<LibraryEntryAttributes, LibraryEntryCreationAttributes>
     implements LibraryEntryAttributes {
     public id!: number;
@@ -22,6 +25,7 @@ export class LibraryEntry extends Model<LibraryEntryAttributes, LibraryEntryCrea
     public readonly updatedAt!: Date;
 }
 
+// Define the LibraryEntry model's structure
 export function LibraryEntryFactory(sequelize: Sequelize): typeof LibraryEntry {
     LibraryEntry.init(
         {
