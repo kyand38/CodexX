@@ -6,7 +6,7 @@ dotenv.config();
 
 import express from 'express';
 import routes from './routes/index.js';
-import { sequelize } from './models/index.js';
+import  sequelize  from './config/connection.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
