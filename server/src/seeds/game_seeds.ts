@@ -26,6 +26,6 @@ export const seedGame = async () => {
                 releaseDate: new Date('2009-10-27'),
                 imageUrl: ''
             }
-        ]
-    }
+        ];
+    
 }
