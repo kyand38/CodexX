@@ -7,6 +7,8 @@ export interface RawgGame {
     background_image: string;
     website: string;
     playtime: number;
+    rating: number;
+    ratings_count: number;
 
     platforms: {
         platform: {
@@ -35,6 +37,11 @@ export interface RawgGame {
 				image_background: string;
 			};
     }[];
+
+    short_screenshots: {
+        id: number;
+        image: string;
+    }[]
 
     // TODO: build developers object
     // developers: string[];

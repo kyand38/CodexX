@@ -6,9 +6,10 @@ import SearchBar from '../components/SearchBar';
 import FilterBar from '../components/FilterBar';
 import GameCard from '../components/GameCard';
 import Footer from '../components/Footer';
+import { RawgGame } from '../interfaces/RawgGame';
 
 const HomePage: React.FC = () => {
-  const [games, setGames] = useState<any[]>([]);
+  const [games, setGames] = useState<RawgGame[]>([]); // Set state type to RawgGame[]
 
   const onSearch = (searchQuery: string) => {
     console.log('Search for:', searchQuery);
@@ -25,7 +26,7 @@ const HomePage: React.FC = () => {
     const fetchPopularGames = async () => {
       try {
         const fetchedGames = await rawgSerivice.getGames(15, 1); // Get 15 games for the first page
-        setGames(fetchedGames.results); // Assuming response contains 'results' for games
+        setGames(fetchedGames.results);
       } catch (error) {
         console.error('Error fetching popular games:', error);
       }
@@ -47,11 +48,8 @@ const HomePage: React.FC = () => {
             games.map((game, index) => (
               <GameCard
                 key={index}
-                background_image={game.background_image}
-                name={game.name} 
-                platforms={game.platforms} 
-                rating={game.rating} 
-                seeMoreButton={game.url} 
+                game={game} // Pass the entire game object
+                seeMoreButton={game.website}
               />
             ))
           ) : (
