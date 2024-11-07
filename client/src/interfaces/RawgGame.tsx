@@ -73,6 +73,8 @@ export interface RawgGame {
     background_image: string;
     website: string;
     playtime: number;
+    rating: number;
+    ratings_count: number;
     platforms: {
         platform: RawgPlatform;
         released_at: string;
@@ -84,6 +86,11 @@ export interface RawgGame {
         url: string;
         store: RawgStore;
     }[];
+
+    short_screenshots: {
+        id: number;
+        image: string;
+    }[]
 
     // TODO: build developers object
     // developers: string[];
