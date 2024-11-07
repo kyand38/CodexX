@@ -1,58 +1,51 @@
 import React, { useEffect, useState } from 'react';
+import { rawgSerivice } from '../service/rawgService';
 
 import Header from '../components/Header';
 import SearchBar from '../components/SearchBar';
-import FilterBar from '../components/FilterBar';
 import GameCard from '../components/GameCard';
 import Footer from '../components/Footer';
+import { RawgGame } from '../interfaces/RawgGame';
 
-const WishlistPage: React.FC = () => {
-  const [savedGames, setSavedGames] = useState<any[]>([]);
+const HomePage: React.FC = () => {
+  const [games, setGames] = useState<RawgGame[]>([]);
 
   const onSearch = (searchQuery: string) => {
     console.log('Search for:', searchQuery);
     // Add filter logic here based on the search query
   };
 
-  const onFilterChange = (filterValue: string) => {
-    console.log('Filter changed:', filterValue);
-    // Implement filtering logic based on filterValue
-  };
-
+  // Fetch popular games when the page loads
   useEffect(() => {
-    // Fetch saved games from API or local storage
-    const fetchSavedGames = async () => {
+    const fetchPopularGames = async () => {
       try {
-        const savedGamesFromStorage = JSON.parse(localStorage.getItem('wishlist') || '[]');
-        setSavedGames(savedGamesFromStorage);  // Update state with saved games
+        const fetchedGames = await rawgSerivice.getGames(15, 1); // Get 15 games for the first page
+        setGames(fetchedGames.results);
       } catch (error) {
-        console.error('Error fetching saved games:', error);
+        console.error('Error fetching popular games:', error);
       }
     };
 
-    fetchSavedGames();
+    fetchPopularGames();
   }, []);
 
   return (
     <div>
       <Header />
-      <SearchBar onSearch={onSearch} /> {/* Pass onSearch function as prop */}
-      <h1>Wishlist</h1>
-      <FilterBar onFilterChange={onFilterChange} /> {/* Pass onFilterChange function as prop */}
+      {/* Placing the SearchBar separately below the Header */}
+      <SearchBar onSearch={onSearch} /> 
       <div>
-        {savedGames.length > 0 ? (
-          savedGames.map((game, index) => (
+        {/* Render the first 15 games as GameCard components */}
+        {games.length > 0 ? (
+          games.map((game, index) => (
             <GameCard
               key={index}
-              background_image={game.background_image}
-              name={game.name}
-              platforms={game.platforms}
-              rating={game.rating}
-              seeMoreButton={game.url}
+              game={game} // Pass the entire game object
+              seeMoreButton={game.website} // game.website for the 'See More' button
             />
           ))
         ) : (
-          <p>No saved games found.</p>
+          <p>Loading popular games...</p>
         )}
       </div>
       <Footer />
@@ -60,4 +53,4 @@ const WishlistPage: React.FC = () => {
   );
 };
 
-export default WishlistPage;
+export default HomePage;
