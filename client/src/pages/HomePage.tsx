@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { rawgSerivice } from '../service/rawgService';
-
+import Logout from '../components/Logout';
 import Header from '../components/Header';
 import SearchBar from '../components/SearchBar';
 import GameCard from '../components/GameCard';
@@ -32,6 +32,8 @@ const HomePage: React.FC = () => {
   return (
     <div>
       <Header />
+      <Logout/>
+      {/* Pass onSearch function as prop */}
       {/* Placing the SearchBar separately below the Header */}
       <SearchBar onSearch={onSearch} /> 
       <div>
