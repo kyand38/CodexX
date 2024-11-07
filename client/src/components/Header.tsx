@@ -1,6 +1,5 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import SearchBar from './SearchBar';
 
 const Header: React.FC = () => {
   return (
@@ -11,11 +10,6 @@ const Header: React.FC = () => {
           <Link to="/">
             <h1>CodexX</h1>
           </Link>
-        </div>
-
-        {/* Search bar in the center */}
-        <div className="search-bar">
-          <SearchBar />
         </div>
 
         {/* Right-aligned navigation buttons */}
