@@ -5,6 +5,7 @@ import bcrypt from 'bcrypt';
 
 //sample data to be seeded into database
 export const seedUser = async () => {
+    //try-catch to handle any errors
     try {
         const users = [
 
