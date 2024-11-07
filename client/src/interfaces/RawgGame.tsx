@@ -92,12 +92,14 @@ export interface RawgGame {
         image: string;
     }[]
 
-    // TODO: build developers object
-    // developers: string[];
-
+    developers: RawgDeveloper[];
     genres: RawgGenre[];
     publishers: string[];
-    esrb_rating: string;
+    esrb_rating: {
+        id: number;
+        name: string;
+        slug: string;
+    };
 }
 
 // list of games paginated
@@ -150,6 +152,28 @@ export interface RawgCreator {
 }
 
 export interface RawgCreators {
+    count: number;
+    next: string | null;
+    previous: string | null;
+    results: RawgCreator[];
+}
+
+interface RawgScreenshot {
+    id: number;
+    image: string;
+    width: number;
+    height: number;
+    is_deleted: boolean;
+}
+
+export interface RawgScreenshots {
+    count: number;
+    next: string | null;
+    previous: string | null;
+    results: RawgScreenshot[] | null;
+}
+
+export interface RawgDevelopmentTeam {
     count: number;
     next: string | null;
     previous: string | null;

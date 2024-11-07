@@ -1,6 +1,6 @@
 import React from 'react';
 import { RawgGame } from '../interfaces/RawgGame';
-import { concatGenres } from '../utils/helpers';
+import { concatDevelopmentTeam, concatGenres } from '../utils/helpers';
 
 interface GameCardProps {
   game: RawgGame;
@@ -18,7 +18,7 @@ const GameCard: React.FC<GameCardProps> = ({ game, seeMoreButton }) => {
       </div>
 
       <div className="game-card__platforms">
-        {game.platforms.platform.map((platform) => (
+        {game.platforms.map((platform) => (
           <span key={platform.id} className="platform">
             {platform.name}
           </span>
