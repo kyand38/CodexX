@@ -1,8 +1,8 @@
 //Store each game by integer Id
 //title, genre, platform, releaseDate, imageUrl
-import { Game } from "../models/index.js"; 
+import { Game } from "../models/index.js";
 
-export const seedGame = async () => {
+export const seedGames = async () => {
     try {
         const games = [
             {
@@ -26,6 +26,11 @@ export const seedGame = async () => {
                 releaseDate: new Date('2009-10-27'),
                 imageUrl: ''
             }
-        ];
-    
+        ]
+        await Game.bulkCreate(games)
+        console.log('Games have been successfully seeded.');
+    }
+    catch (error) {
+        console.error('Error seeding games:', error)
+    }
 }
