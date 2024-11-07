@@ -42,7 +42,7 @@ const Login = () => {
       <div className="columns is-centered">
         <div className="column is-half">
           <form className='box' onSubmit={handleSubmit}>
-            <h1 className="title is-3 has-text-centered">
+            <h1 className="title is-3 has-text-link has-text-centered">
               {isSignup ? 'Sign Up' : 'Login'}
             </h1>
             <div className="field">
@@ -88,13 +88,13 @@ const Login = () => {
             </div>
             <div className="field is-grouped is-grouped-centered mt-4">
               <p className="control">
-                <button className="button is-primary" type="submit">
+                <button className="button is-link" type="submit">
                   {isSignup ? 'Sign Up' : 'Login'}
                 </button>
               </p>
               <p className="control">
                 <button
-                  className="button is-link is-light"
+                  className="button is-link is-light is-outlined"
                   type="button"
                   onClick={() => setIsSignup(!isSignup)}
                 >

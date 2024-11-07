@@ -3,7 +3,7 @@ import { UserLogin } from "../interfaces/UserLogin";
 const login = async (userInfo: UserLogin) => {
   try {
     // Send a POST request to '/api/auth/login' with user login information in JSON format
-    const response = await fetch('/api/auth/login', {
+    const response = await fetch('/api/login', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -26,7 +26,7 @@ const login = async (userInfo: UserLogin) => {
 
 export const signup = async (formData: { username: string; email: string; password: string }) => {
   try {
-    const response = await fetch('/api/auth/new', {
+    const response = await fetch('/api/new', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
