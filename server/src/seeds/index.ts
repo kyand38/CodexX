@@ -12,8 +12,8 @@ const seedAll = async (): Promise<void> => {
     console.log('\n----- USERS SEEDED -----\n');
     await seedGames();
     console.log('\n----- GAMES SEEDED -----\n');
-    // await seedLibraryEntries();
-    // console.log('\n----- LIBRARY ENTRIES SEEDED -----\n');
+     await seedLibraryEntries();
+    console.log('\n----- LIBRARY ENTRIES SEEDED -----\n');
 
     process.exit(0);
   } catch (error) {
