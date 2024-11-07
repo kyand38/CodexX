@@ -15,7 +15,9 @@ import {
   RawgPublisher,
   RawgPublishers,
   RawgDeveloper,
-  RawgDevelopers
+  RawgDevelopers,
+  RawgScreenshots,
+  RawgDevelopmentTeam
 } from '../interfaces/RawgGame';
 
 import dotenv from 'dotenv';
@@ -129,7 +131,27 @@ class RawgService {
     return JSON.parse(data);
   }
   // ----------------DEVELOPERS END----------------------
-}
 
+  // -------------SCREENSHOTS BEGIN----------------------
+  // this is different from the short_screenshots provided from game details, we may not need to use this
+  async getScreenshots(id: number): Promise<RawgScreenshots> {
+    const response = await fetch(`${this.REQUEST_URL}/games/${id}/screenshots?key=${this.API_KEY}`, {
+      method: 'GET',
+    });
+    const data = await response.json();
+    return JSON.parse(data);
+  }
+  // ---------------SCREENSHOTS END-----------------------
+
+  // -------------DEVELOPEMENT TEAM BEGIN-----------------
+  async getDevelopmentTeam(id: number): Promise<RawgDevelopmentTeam> {
+    const response = await fetch(`${this.REQUEST_URL}/games/${id}/development-team?key=${this.API_KEY}`, {
+      method: 'GET',
+    });
+    const data = await response.json();
+    return JSON.parse(data);
+  }
+  // --------------DEVELOPMENT TEAM END-------------------
+}
 const rawgSerivice = new RawgService();
 export { rawgSerivice };
