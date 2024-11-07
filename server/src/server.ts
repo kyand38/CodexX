@@ -18,7 +18,7 @@ const PORT = process.env.PORT || 3001;
 app.use(express.static('../client/dist'));
 
 app.use(express.json());
-app.use(routes);
+app.use('/api', routes);
 
 app.get('*', (__req, res) => {
 res.sendFile(path.join(__dirname, '../../client/dist/index.html'));

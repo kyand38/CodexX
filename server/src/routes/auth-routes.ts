@@ -1,6 +1,6 @@
 import { Router, type Request, type Response } from 'express';
 import { User } from '../models/user.js';
-import * as jwt from 'jsonwebtoken';
+import jwt from 'jsonwebtoken';
 import * as bcrypt from 'bcrypt';
 
 export const login = async (req: Request, res: Response) => {
@@ -31,10 +31,14 @@ export const signup = async (req: Request, res: Response) => {
     }
 
     const hashedPassword = await bcrypt.hash(password, 10); // Hash the password
+    console.log('Password hashed successfully'); // Debugging line
+
     const registeredUser = await User.create({ username, email, password: hashedPassword });
+    console.log('User created successfully:', registeredUser); // Debugging line
 
     const secretKey = process.env.JWT_SECRET_KEY || '';
     const token = jwt.sign({ id: registeredUser.id, username }, secretKey, { expiresIn: '1h' });
+    console.log('JWT token generated:', token); // Debugging line
 
     return res.json({ token });
   } catch (error: any) {
