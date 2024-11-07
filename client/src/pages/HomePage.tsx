@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { rawgSerivice } from '../service/rawgService';
-
+import Logout from '../components/Logout';
 import Header from '../components/Header';
 import SearchBar from '../components/SearchBar';
 import FilterBar from '../components/FilterBar';
@@ -38,6 +38,7 @@ const HomePage: React.FC = () => {
   return (
     <div>
       <Header />
+      <Logout/>
       <SearchBar onSearch={onSearch} /> {/* Pass onSearch function as prop */}
       <div>
         <FilterBar onFilterChange={onFilterChange} /> {/* Pass onFilterChange function as prop */}
