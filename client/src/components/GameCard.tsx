@@ -8,7 +8,9 @@ interface GameCardProps {
   seeMoreButton: string;
 }
 
-const GameCard: React.FC<GameCardProps> = ({ game, seeMoreButton }) => {
+const GameCard: React.FC<GameCardProps> = ({ game, 
+  // seeMoreButton
+ }) => {
   return (
     <div className="game-card card has-text-centered cell">
 
