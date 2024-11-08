@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { rawgService } from '../service/rawgService';
-
+import Logout from '../components/Logout';
 import Header from '../components/Header';
 import SearchBar from '../components/SearchBar';
 import GameCard from '../components/GameCard';
 import Footer from '../components/Footer';
 import { RawgGame } from '../interfaces/RawgGame';
 
-const HomePage: React.FC = () => {
+const ProfilePage: React.FC = () => {
   const [games, setGames] = useState<RawgGame[]>([]);
 
   const onSearch = (searchQuery: string) => {
@@ -32,6 +32,8 @@ const HomePage: React.FC = () => {
   return (
     <div>
       <Header />
+      <Logout/>
+      {/* Pass onSearch function as prop */}
       {/* Placing the SearchBar separately below the Header */}
       <SearchBar onSearch={onSearch} /> 
       <div>
@@ -53,4 +55,4 @@ const HomePage: React.FC = () => {
   );
 };
 
-export default HomePage;
+export default ProfilePage;

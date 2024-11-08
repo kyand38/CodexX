@@ -5,6 +5,8 @@ import './index.css';
 import App from './App.tsx';
 import ErrorPage from './pages/ErrorPage.tsx';
 import Login from './pages/Login.tsx';
+import LandingPage from './pages/LandingPage.tsx';
+import ProfilePage from './pages/ProfilePage.tsx';
 
 const router = createBrowserRouter([
   {
@@ -13,8 +15,20 @@ const router = createBrowserRouter([
     errorElement: <ErrorPage />,
     children: [
       {
+        path: '/',
+        element: <LandingPage />
+      },
+      {
+        path: '/landing',
+        element: <LandingPage />
+      },
+      {
         path: '/login',
         element: <Login />
+      },
+      {
+        path: '/profile/:userId',
+        element: <ProfilePage />
       }
     ]
   }
