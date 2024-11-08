@@ -6,7 +6,7 @@ import App from './App.tsx';
 import ErrorPage from './pages/ErrorPage.tsx';
 import Login from './pages/Login.tsx';
 import LandingPage from './pages/LandingPage.tsx';
-import HomePage from './pages/HomePage.tsx';
+import ProfilePage from './pages/ProfilePage.tsx';
 
 const router = createBrowserRouter([
   {
@@ -18,10 +18,6 @@ const router = createBrowserRouter([
         path: '/',
         element: <LandingPage />
       },
-      // {
-      //   path: '/home',
-      //   element: <HomePage />
-      // },
       {
         path: '/landing',
         element: <LandingPage />
@@ -29,6 +25,10 @@ const router = createBrowserRouter([
       {
         path: '/login',
         element: <Login />
+      },
+      {
+        path: '/profile/:userId',
+        element: <ProfilePage />
       }
     ]
   }

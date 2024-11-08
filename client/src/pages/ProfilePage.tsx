@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { rawgSerivice } from '../service/rawgService';
+import { rawgService } from '../service/rawgService';
 import Logout from '../components/Logout';
 import Header from '../components/Header';
 import SearchBar from '../components/SearchBar';
@@ -7,7 +7,7 @@ import GameCard from '../components/GameCard';
 import Footer from '../components/Footer';
 import { RawgGame } from '../interfaces/RawgGame';
 
-const HomePage: React.FC = () => {
+const ProfilePage: React.FC = () => {
   const [games, setGames] = useState<RawgGame[]>([]);
 
   const onSearch = (searchQuery: string) => {
@@ -19,7 +19,7 @@ const HomePage: React.FC = () => {
   useEffect(() => {
     const fetchPopularGames = async () => {
       try {
-        const fetchedGames = await rawgSerivice.getGames(15, 1); // Get 15 games for the first page
+        const fetchedGames = await rawgService.getGames(); // Get 15 games for the first page
         setGames(fetchedGames.results);
       } catch (error) {
         console.error('Error fetching popular games:', error);
@@ -55,4 +55,4 @@ const HomePage: React.FC = () => {
   );
 };
 
-export default HomePage;
+export default ProfilePage;

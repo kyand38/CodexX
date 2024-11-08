@@ -1,19 +1,17 @@
 import { useState, FormEvent, ChangeEvent } from 'react';
-import { signup } from '../api/authAPI.js';
+import { signup, login } from '../api/authAPI.js';
 import Auth from '../utils/auth.js';
-import { login } from '../api/authAPI.js';
+import { useNavigate } from 'react-router-dom';
 
 const Login = () => {
   const [isSignup, setIsSignup] = useState(false);
-  const [formData, setFormData] = useState<{
-    username: string;
-    password: string;
-    email: string;
-  }>({
+  const [formData, setFormData] = useState({
     username: '',
     password: '',
     email: ''
   });
+
+  const navigate = useNavigate(); // Initialize navigate function
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -29,8 +27,11 @@ const Login = () => {
       const data = isSignup
         ? await signup(formData) // Call signup function if in signup mode
         : await login(formData);  // Call login function otherwise
-
-      Auth.login(data.token);
+  
+      Auth.login(data.token); // Store the token in localStorage or session
+  
+      // Redirect to profile page using the userId
+      navigate(`/profile/${data.userId}`);
     } catch (err) {
       alert(isSignup ? 'Signup failed' : 'Login failed');
       console.error(`Failed to ${isSignup ? 'signup' : 'login'}`, err);
