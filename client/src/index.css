@@ -191,8 +191,6 @@ p.subtitle.has-text-light {
   padding: 10px;
 }
 
-/* .card-footer {
-  position: absolute;
-  margin-bottom: 0px;
-  width: 100%;
-} */
+.card-footer {
+  margin-top: auto;
+}
