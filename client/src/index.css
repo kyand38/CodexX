@@ -68,8 +68,8 @@ button:focus-visible {
 } */
 
 body {
-  background-color: #fff;
-  height: 100%; /* Ensure full height of the page */
+  background-color: #000;
+  height: 100%;
   margin: 0; 
   background: linear-gradient(to bottom, #de1f7c, #992694, #0c165b);
 }
@@ -77,6 +77,83 @@ body {
 .hero-body {
   background: linear-gradient(to bottom, #de1f7c, #992694, #0c165b);
   position: relative;
+}
+
+.container p {
+  color: #ffffff;
+  font-size: 15px;
+  font-weight: lighter;
+}
+
+.container strong {
+  font-size: 15px;
+  color: #ffffff;
+}
+
+.hero.is-fullheight .hero-body>.container, .hero.is-fullheight-with-navbar .hero-body>.container, .hero.is-halfheight .hero-body>.container {
+  color: orange;
+}
+
+.button.is-link {
+  background-color: #fff;
+  color: #0c165b;
+  margin-top: 25px;
+}
+
+.button.is-link:hover {
+  background-color: #0c165b;
+  color: #fff;
+}
+
+.title:not(.is-spaced):has(+.subtitle) {
+  margin-bottom: 25px;
+  font-size: 55px;
+}
+
+p.subtitle.has-text-light {
+  margin-bottom: 50px;
+  color: #fff;
+  font-size: 25px;
+}
+
+.container .columns .column .box .title {
+  margin-bottom: 25px;
+  font-size: 25px;
+  color: #de1f7c !important;
+}
+
+.field .label {
+  font-weight: lighter;
+  font-size: 16px;
+  color: #000;
+}
+
+.input {
+  margin-bottom: 15px;
+}
+
+.field.is-grouped.is-grouped-centered {
+  justify-content: center;
+  margin-bottom: 25px;
+}
+
+/* Style for the "Login" button */
+.button.is-login {
+  background-color: #0c165b;
+  color: white;
+  border-radius: 4px;
+}
+
+/* Style for the "Already have an account?" button */
+.button.is-signup {
+  color: #0c165b;
+  border: 2px solid #0c165b;
+}
+
+.button.is-signup:hover {
+  background-color: transparent;
+  color: #0c165b;
+  border: 2px solid #0c165b;
 }
 
 .footer {
@@ -107,38 +184,5 @@ body {
 .footer-content p {
   margin: 0; 
   font-size: 14px;
-  color: #000;
-}
-
-.button.is-link {
-  background-color: #fff;
-  color: #0c165b;
-}
-
-.button.is-link:hover {
-  background-color: #0c165b;
-  color: #fff;
-}
-
-.title:not(.is-spaced):has(+.subtitle) {
-  margin-bottom: 25px;
-  font-size: 55px;
-}
-
-p.subtitle.has-text-light {
-  margin-bottom: 50px;
-  color: #fff;
-  font-size: 25px;
-}
-
-.container .columns .column .box .title {
-  margin-bottom: 50px;
-  font-size: 25px;
-  color: #de1f7c !important;
-}
-
-.field .label {
-  font-weight: lighter;
-  font-size: 16px;
   color: #000;
 }
