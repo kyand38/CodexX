@@ -28,27 +28,25 @@ class RawgService {
 
   // --------------GAMES BEGIN-----------------
   async getGame(id: number): Promise<RawgGame> {
-    const response = await fetch(`/rawg/game/${id}`);
+    const response = await fetch(`/api/rawg/game/${id}`);
     const data = await response.json();
     return data;
   }
 
   async getGames(): Promise<RawgGames> {
-    console.log('fetching games')
+    // console.log('fetching games')
     const response = await fetch('/api/rawg/games');
-    console.log(response)
+    // console.log(response)
     const data = await response.json();
-    console.log(data)
+    // console.log(data)
     return data;
   }
 
-  // async searchGame(gameName: string): Promise<RawgGames | RawgGame> {
-  //   const response = await fetch(`${this.REQUEST_URL}/games?search=${gameName}&key=${this.API_KEY}`, {
-  //     method: 'GET',
-  //   });
-  //   const data = await response.json();
-  //   return JSON.parse(data);
-  // }
+  async searchGame(gameName: string): Promise<RawgGames | RawgGame> {
+    const response = await fetch(`/api/rawg/game/${gameName}`);
+    const data = await response.json();
+    return data;
+  }
   // // ----------------GAMES END-----------------------
 
   // // ------------------CREATORS BEGIN----------------
