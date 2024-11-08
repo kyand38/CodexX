@@ -1,5 +1,5 @@
 const forceDatabaseRefresh = false;
-// import path from 'path';
+import path from 'path';
 // import { fileURLToPath } from 'url';
 import dotenv from 'dotenv';
 dotenv.config();
@@ -15,7 +15,7 @@ const app = express();
 const PORT = process.env.PORT || 3001;
 
 // Serves static files in the entire client's dist folder
-app.use(express.static('../client/dist'));
+// app.use(express.static('../client/dist'));
 
 app.use(express.json());
 app.use('/api', routes);
@@ -24,6 +24,13 @@ app.use('/api', routes);
 // // res.sendFile(path.join(__dirname, '../../client/dist/index.html'));
 // res.sendFile(path.join(process.cwd(), '../client/dist/index.html'));
 // });
+if (process.env.NODE_ENV === 'production') {
+  app.use(express.static('../client/dist'));
+
+   app.get('*', (_req, res) => {
+    res.sendFile(path.join(process.cwd(),'../client/dist/index.html'));
+  });
+}
 
 sequelize.sync({force: forceDatabaseRefresh}).then(() => {
   app.listen(PORT, () => {
