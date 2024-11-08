@@ -20,9 +20,9 @@ const GameCard: React.FC<GameCardProps> = ({ game, seeMoreButton }) => {
             alt={game.name}
             className="game-card__image" />
         </figure>
-        <div className="card-content">
-          <h3 className="game-card__title title is-4">{game.name}</h3>
-        </div>
+      </div>
+      <div className="card-content">
+        <h3 className="game-card__title title is-4">{game.name}</h3>
 
         <div className="content">
           <p className="tag is-medium">Genres</p>
@@ -41,15 +41,13 @@ const GameCard: React.FC<GameCardProps> = ({ game, seeMoreButton }) => {
           </p>
 
           <div className="game-card__rating tag is-medium">Metacritic: {game.metacritic}</div>
-
-          <footer className="card-footer">
-            <Link to={`/game/${game.id}`} className="game-card__link card-footer-item">See Details</Link>
-            {/* TODO: Fix add to wishlist link */}
-            <Link to={`/`} className="card-footer-item">Add to wishlist</Link>
-          </footer>
-
         </div>
       </div>
+      <footer className="card-footer">
+        <Link to={`/game/${game.id}`} className="game-card__link card-footer-item">See Details</Link>
+        {/* TODO: Fix add to wishlist link */}
+        <Link to={`/`} className="card-footer-item">Add to wishlist</Link>
+      </footer>
     </div >
   );
 };
