@@ -68,15 +68,15 @@ button:focus-visible {
 } */
 
 body {
-  background-color: #000;
+  /* background-color: #000; */
   height: 100%;
   margin: 0; 
-  background: linear-gradient(to bottom, #de1f7c, #992694, #0c165b);
+  /* background: linear-gradient(to bottom, #de1f7c, #992694, #0c165b); */
+  background: radial-gradient(circle at top right, #de1f7c, #992694, #0c165b, #0c165b);
 }
 
 .hero-body {
   background: linear-gradient(to bottom, #de1f7c, #992694, #0c165b);
-  position: relative;
 }
 
 .container p {
