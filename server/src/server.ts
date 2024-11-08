@@ -6,9 +6,7 @@ dotenv.config();
 
 import express from 'express';
 import routes from './routes/index.js';
-import  sequelize  from './config/connection.js';
-import gameRoutes from './routes/games-routes.js'
-import libraryEntryRoutes from './routes/libEntry-routes.js'
+import sequelize  from './config/connection.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -21,8 +19,6 @@ app.use(express.static('../client/dist'));
 
 app.use(express.json());
 app.use('/api', routes);
-app.use('/api', gameRoutes);
-app.use('/api', libraryEntryRoutes);
 
 app.get('*', (__req, res) => {
 res.sendFile(path.join(__dirname, '../../client/dist/index.html'));

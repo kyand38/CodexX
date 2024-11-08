@@ -19,8 +19,9 @@ const ProfilePage: React.FC = () => {
   useEffect(() => {
     const fetchPopularGames = async () => {
       try {
-        const fetchedGames = await rawgService.getGames(); // Get 15 games for the first page
+        const fetchedGames = await rawgService.getGames();
         setGames(fetchedGames.results);
+        console.log(fetchedGames);
       } catch (error) {
         console.error('Error fetching popular games:', error);
       }
@@ -50,7 +51,6 @@ const ProfilePage: React.FC = () => {
           <p>Loading popular games...</p>
         )}
       </div>
-      <Footer />
     </div>
   );
 };

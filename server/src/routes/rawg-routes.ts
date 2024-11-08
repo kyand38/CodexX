@@ -19,7 +19,9 @@ router.get('/game/:id', async (_req: Request, res: Response) => {
 router.get('/games', async (_req: Request, res: Response) => {
   try {
     const response = await fetch(`${process.env.REQUEST_URL}/games?page=1&page_size=15&key=${process.env.API_KEY}`);
+    console.log(response)
     const data = await response.json();
+    console.log(data);
     res.json(data);
   } catch (error: any) {
     res.status(500).json({ message: error.message });

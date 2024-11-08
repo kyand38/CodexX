@@ -34,8 +34,11 @@ class RawgService {
   }
 
   async getGames(): Promise<RawgGames> {
-    const response = await fetch('/rawg/games');
+    console.log('fetching games')
+    const response = await fetch('/api/rawg/games');
+    console.log(response)
     const data = await response.json();
+    console.log(data)
     return data;
   }
 

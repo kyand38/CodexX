@@ -27,9 +27,9 @@ const Login = () => {
       const data = isSignup
         ? await signup(formData) // Call signup function if in signup mode
         : await login(formData);  // Call login function otherwise
-  
+
       Auth.login(data.token); // Store the token in localStorage or session
-  
+
       // Redirect to profile page using the userId
       navigate(`/profile/${data.userId}`);
     } catch (err) {
@@ -87,21 +87,19 @@ const Login = () => {
                 />
               </div>
             </div>
-            <div className="field is-grouped is-grouped-centered mt-4">
-              <p className="control">
-                <button className="button is-link" type="submit">
-                  {isSignup ? 'Sign Up' : 'Login'}
-                </button>
-              </p>
-              <p className="control">
-                <button
-                  className="button is-link is-light is-outlined"
-                  type="button"
-                  onClick={() => setIsSignup(!isSignup)}
-                >
-                  {isSignup ? 'Already have an account? Log in' : 'Need an account? Sign up'}
-                </button>
-              </p>
+            <div className="field">
+              <button className="button is-link is-login" type="submit">
+                {isSignup ? 'Sign Up' : 'Login'}
+              </button>
+            </div>
+            <div className="field">
+              <button
+                className="button is-link is-light is-outlined is-signup"
+                type="button"
+                onClick={() => setIsSignup(!isSignup)}
+              >
+                {isSignup ? 'Already have an account? Log in' : 'Need an account? Sign up'}
+              </button>
             </div>
           </form>
         </div>
