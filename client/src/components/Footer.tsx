@@ -1,5 +1,5 @@
 import React from 'react';
-import logo from '../assets/Placeholder Logo.png'; // Adjust the path as needed
+import logo from '../assets/CodexX Logo.png';
 
 const Footer: React.FC = () => {
   return (
