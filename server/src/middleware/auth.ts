@@ -11,7 +11,7 @@ export const authenticateToken = (
   res: Response,
   next: NextFunction
 ) => {
-  const authHeader = req.headers.authorization;
+  const authHeader = req.headers.authorization; //maybe need be a let
 
   if (authHeader) {
     const token = authHeader.split(' ')[1];

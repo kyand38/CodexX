@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { rawgSerivice } from '../service/rawgService';
+import { rawgService } from '../service/rawgService';
 import Logout from '../components/Logout';
 import Header from '../components/Header';
 import SearchBar from '../components/SearchBar';
@@ -19,7 +19,7 @@ const ProfilePage: React.FC = () => {
   useEffect(() => {
     const fetchPopularGames = async () => {
       try {
-        const fetchedGames = await rawgSerivice.getGames(15, 1); // Get 15 games for the first page
+        const fetchedGames = await rawgService.getGames(); // Get 15 games for the first page
         setGames(fetchedGames.results);
       } catch (error) {
         console.error('Error fetching popular games:', error);

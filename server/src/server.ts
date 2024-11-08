@@ -7,8 +7,8 @@ dotenv.config();
 import express from 'express';
 import routes from './routes/index.js';
 import  sequelize  from './config/connection.js';
-import gameRoutes from './routes/games_routes.js'
-import libraryEntryRoutes from './routes/libEntry_routes.js'
+import gameRoutes from './routes/games-routes.js'
+import libraryEntryRoutes from './routes/libEntry-routes.js'
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
