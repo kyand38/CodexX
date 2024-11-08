@@ -7,7 +7,7 @@ import GameCard from '../components/GameCard';
 import Footer from '../components/Footer';
 import { RawgGame } from '../interfaces/RawgGame';
 
-const HomePage: React.FC = () => {
+const ProfilePage: React.FC = () => {
   const [games, setGames] = useState<RawgGame[]>([]);
 
   const onSearch = (searchQuery: string) => {
@@ -55,4 +55,4 @@ const HomePage: React.FC = () => {
   );
 };
 
-export default HomePage;
+export default ProfilePage;

@@ -1,6 +1,6 @@
 import { seedUser } from './user_seeds.js';
 import { seedGames } from './game_seeds.js';
-// import { seedLibraryEntries } from './library_entry.js';
+import { seedLibraryEntries } from './library_entry.js';
 import sequelize from '../config/connection.js';
 
 const seedAll = async (): Promise<void> => {

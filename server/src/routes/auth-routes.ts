@@ -8,6 +8,7 @@ export const login = async (req: Request, res: Response) => {
 
   try {
     const user = await User.findOne({ where: { username } });
+    
     if (!user) {
       return res.status(401).json({ message: 'Authentication failed' });
     }
@@ -19,7 +20,9 @@ export const login = async (req: Request, res: Response) => {
 
     const secretKey = process.env.JWT_SECRET_KEY || '';
     const token = jwt.sign({ id: user.id, username }, secretKey, { expiresIn: '1h' });
-    return res.json({ token });
+    
+    // Return token and userId for frontend redirection to profile
+    return res.json({ token, userId: user.id });
   } catch (error) {
     console.error('Login error:', error);
     return res.status(500).json({ message: 'Login failed' });
@@ -40,7 +43,8 @@ export const signup = async (req: Request, res: Response) => {
     const secretKey = process.env.JWT_SECRET_KEY || '';
     const token = jwt.sign({ id: registeredUser.id, username }, secretKey, { expiresIn: '1h' });
 
-    return res.json({ token });
+    // Return token and userId for frontend redirection to profile
+    return res.json({ token, userId: registeredUser.id });
   } catch (error: any) {
     console.error('Signup error:', error);
     if (error.name === 'SequelizeUniqueConstraintError') {
