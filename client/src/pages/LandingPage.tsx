@@ -1,14 +1,11 @@
 // src/pages/LandingPage.tsx
 import React from 'react';
 import { Link } from 'react-router-dom';
-// import Footer from '../components/Footer';
-import Logout from '../components/Logout';
 
 const LandingPage: React.FC = () => {
   return (
     <div className="landing-page">
       {/* Hero Section */}
-      <Logout />
       <section className="hero is-fullheight has-background-dark">
         <div className="hero-body">
           <div className="container has-text-centered">
@@ -19,6 +16,11 @@ const LandingPage: React.FC = () => {
             <h1 className="title has-text-white">
               Welcome to CodexX
             </h1>
+
+            <p className="subtitle has-text-light">
+              Dive deep into the galaxy of games.
+            </p>
+
             <p><strong>Welcome to CodexX!</strong></p>
 
 <p><em>Your Ultimate Hub for Game Discovery and Collection</em></p>
@@ -32,6 +34,7 @@ const LandingPage: React.FC = () => {
 <p><strong>Curate Your Game Codex</strong> – Rate and track every game you’ve played, building a personal codex that grows with each adventure.</p>
 
 <p>CodexX brings your gaming world together, giving you a space to dive deeper and make every game count. Ready to level up your collection?</p>
+
             <Link to="/login" className="button is-link">
               Get Started
             </Link>
