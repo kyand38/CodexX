@@ -1,7 +1,7 @@
 import express from 'express';
 import type { Request, Response } from 'express';
-import { User } from '../../models/index.js';
-
+import { User, LibraryEntry, Game } from '../../models/index.js';
+import { authenticateToken } from '../../middleware/auth.js';
 const router = express.Router();
 
 // GET /users - Get all users
@@ -76,6 +76,53 @@ router.delete('/:id', async (req: Request, res: Response) => {
     }
   } catch (error: any) {
     res.status(500).json({ message: error.message });
+  }
+});
+
+router.get('/profile', authenticateToken, async (req: Request, res: Response) => {
+  try {
+    // Ensure `req.user` is defined
+    if (!req.user || !req.user.id) {
+      return res.status(401).json({ message: 'Unauthorized' });
+    }
+    // `authenticateToken` middleware should populate `req.user.id` with the logged-in user's ID
+    const userId = req.user.id;
+
+    // Find user by ID, including associated favorites if they exist
+    const user = await User.findByPk(userId, {
+      attributes: { exclude: ['password'] },
+      include: [LibraryEntry] // LibraryEntry for user favorites
+    });
+
+    if (!user) {
+      return res.status(404).json({ message: 'User not found' });
+    }
+
+    return res.json(user); // Send user data, including favorite games, back to the client
+  } catch (error: any) {
+    console.error('Error fetching user profile:', error);
+    return res.status(500).json({ message: 'Error fetching user profile' });
+  }
+});
+
+router.get('/library', authenticateToken, async (req: Request, res: Response) => {
+  try {
+    // Ensure `req.user` is defined
+    if (!req.user || !req.user.id) {
+      return res.status(401).json({ message: 'Unauthorized' });
+    }
+
+    const userId = req.user.id; // Ensure `authenticateToken` sets `req.user.id`
+
+    const libraryEntries = await LibraryEntry.findAll({
+      where: { userId },
+      include: [{ model: Game, as: 'gameDetails' }], // Assuming 'gameDetails' alias is defined in associations
+    });
+
+    return res.json(libraryEntries);
+  } catch (error) {
+    console.error('Error fetching library entries:', error);
+    return res.status(500).json({ message: 'Error fetching library entries' });
   }
 });
 

@@ -43,8 +43,7 @@ class AuthService {
   login(idToken: string) {
     //  set the token to localStorage
     localStorage.setItem('token', idToken)
-    //  redirect to the home page
-    window.location.href = ('/')
+
   }
   
   logout() { 
