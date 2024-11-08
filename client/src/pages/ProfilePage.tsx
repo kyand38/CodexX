@@ -37,7 +37,7 @@ const ProfilePage: React.FC = () => {
       {/* Pass onSearch function as prop */}
       {/* Placing the SearchBar separately below the Header */}
       <SearchBar onSearch={onSearch} /> 
-      <div>
+      <div className="grid is-col-min-16">
         {/* Render the first 15 games as GameCard components */}
         {games.length > 0 ? (
           games.map((game, index) => (
