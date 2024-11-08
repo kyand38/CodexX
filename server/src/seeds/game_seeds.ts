@@ -1,8 +1,8 @@
 //Store each game by integer Id
 //title, genre, platform, releaseDate, imageUrl
-import { Game } from "../models/index.js"; 
+import { Game } from "../models/index.js";
 
-export const seedGame = async () => {
+export const seedGames = async () => {
     try {
         const games = [
             {
@@ -10,22 +10,27 @@ export const seedGame = async () => {
                 genre: 'Action-Adventure',
                 platform: 'Playstation',
                 releaseDate: new Date('2020-07-17'),
-                imageUrl: ''
+                imageUrl: 'server/images/placeHolder.png'
             },
             {
                 title: 'Sekiro Shadows Die Twice',
                 genre: 'Souls-like',
                 platform: 'Playstation',
                 releaseDate: new Date('2019-03-22'),
-                imageUrl: ''
+                imageUrl: 'server/images/placeHolder.png'
             },
             {
                 title: 'League of Legends',
                 genre: 'MOBA',
                 platform: 'PC',
                 releaseDate: new Date('2009-10-27'),
-                imageUrl: ''
+                imageUrl: 'server/images/placeHolder.png'
             }
         ]
+        await Game.bulkCreate(games)
+        console.log('Games have been successfully seeded.');
+    }
+    catch (error) {
+        console.error('Error seeding games:', error)
     }
 }
