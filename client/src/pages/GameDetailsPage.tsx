@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { rawgSerivice } from '../service/rawgService';  // Service for fetching data
+import { rawgService } from '../service/rawgService';  // Service for fetching data
 import GameDetail from '../components/GameDetail'; // UI component that displays game details
 import Header from '../components/Header';
 import SearchBar from '../components/SearchBar';
-import Footer from '../components/Footer';
+// import Footer from '../components/Footer';
 
 const GameDetailsPage: React.FC = () => {
   const { id } = useParams<{ id: string }>(); // Retrieve game ID from URL
@@ -14,7 +14,7 @@ const GameDetailsPage: React.FC = () => {
   useEffect(() => {
     const fetchGameDetails = async () => {
       try {
-        const fetchedGame = await rawgSerivice.getGame(Number(id));  // Fetch game data
+        const fetchedGame = await rawgService.getGame(Number(id));  // Fetch game data
         setGame(fetchedGame);  // Update state with fetched data
       } catch (error) {
         console.error('Error fetching game details:', error);  // Handle errors
@@ -36,7 +36,7 @@ const GameDetailsPage: React.FC = () => {
         <p>Loading game details...</p>
       )}
       
-      <Footer />
+      {/* <Footer /> */}
     </div>
   );
 };
