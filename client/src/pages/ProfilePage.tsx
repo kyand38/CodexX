@@ -21,6 +21,7 @@ const ProfilePage: React.FC = () => {
       try {
         const fetchedGames = await rawgService.getGames(); // Get 15 games for the first page
         setGames(fetchedGames.results);
+        console.log(fetchedGames);
       } catch (error) {
         console.error('Error fetching popular games:', error);
       }
