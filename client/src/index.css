@@ -54,55 +54,49 @@ button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
-  }
-} */
+*/
 
-body {
-  background-color: #000;
-  height: 100%;
-  margin: 0; 
-  background: linear-gradient(to bottom, #de1f7c, #992694, #0c165b);
+/* Button Styles */
+.button.is-link {
+  background-color: #0c165b;
+  color: white;
+  border: 2px solid #0c165b;
 }
 
+.button.is-link:hover {
+  background-color: white; 
+  color: #0c165b; 
+  border: 2px solid #0c165b; 
+}
+
+/* Get Started Button */
+.button.is-link.mt-5 {
+  background-color: #fff;
+  color: #0c165b;
+  border: 2px solid #fff;
+}
+
+.button.is-link.mt-5:hover {
+  background-color: #de1f7c;
+  color: #fff;
+  border: 2px solid #de1f7c;
+}
+
+
+/* Header */
 .hero-body {
-  background: linear-gradient(to bottom, #de1f7c, #992694, #0c165b);
   position: relative;
 }
 
 .container p {
-  color: #ffffff;
   font-size: 15px;
   font-weight: lighter;
+  color: inherit;
 }
 
 .container strong {
   font-size: 15px;
-  color: #ffffff;
-}
-
-.hero.is-fullheight .hero-body>.container, .hero.is-fullheight-with-navbar .hero-body>.container, .hero.is-halfheight .hero-body>.container {
-  color: orange;
-}
-
-.button.is-link {
-  background-color: #fff;
-  color: #0c165b;
-  margin-top: 25px;
-}
-
-.button.is-link:hover {
-  background-color: #0c165b;
-  color: #fff;
+  
 }
 
 .title:not(.is-spaced):has(+.subtitle) {
@@ -116,10 +110,54 @@ p.subtitle.has-text-light {
   font-size: 25px;
 }
 
-.container .columns .column .box .title {
+
+
+
+
+/* Landing Page Styles */
+.hero-body {
+  position: relative;
+  background-color: #fff;
+}
+
+.landing-page .container {
+  border-width: 2px;
+  padding: 50px;
+  border-radius: 15px;
+  background: linear-gradient(to bottom, #de1f7c, #992694, #2b317f, #0c165b);
+}
+
+.container p {
+  font-size: 15px;
+  font-weight: lighter;
+  color: #ececec;
+}
+
+.container strong {
+  color: #ececec;
+  font-size: 15px;
+}
+
+
+/* Landing Page Styles */
+.box {
+  background-color: inherit;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 40px;
+  width: 100%; 
+  max-width: 500px; 
+  margin: 50px auto;
+}
+
+.title.is-3.has-text-link.has-text-centered {
   margin-bottom: 25px;
   font-size: 25px;
   color: #de1f7c !important;
+}
+
+.field {
+  text-align: center; /* Centers content horizontally inside the div */
 }
 
 .field .label {
@@ -132,35 +170,15 @@ p.subtitle.has-text-light {
   margin-bottom: 15px;
 }
 
-.field.is-grouped.is-grouped-centered {
-  justify-content: center;
-  margin-bottom: 25px;
+.field .button.is-link {
+  margin-bottom: 15px;
 }
 
-/* Style for the "Login" button */
-.button.is-login {
-  background-color: #0c165b;
-  color: white;
-  border-radius: 4px;
-}
-
-/* Style for the "Already have an account?" button */
-.button.is-signup {
-  color: #0c165b;
-  border: 2px solid #0c165b;
-}
-
-.button.is-signup:hover {
-  background-color: transparent;
-  color: #0c165b;
-  border: 2px solid #0c165b;
-}
-
+/* Style for Footer */
 .footer {
   display: flex;
   align-items: center;
   padding: 20px;
-  background-color: #fff;
   justify-content: center;
   position: fixed;
   left: 0;
@@ -168,6 +186,7 @@ p.subtitle.has-text-light {
   bottom: 0;
   width: 100%;  
   z-index: 10;
+  background: none;
 }
 
 .footer-content {
@@ -181,8 +200,35 @@ p.subtitle.has-text-light {
   margin-right: 15px;
 }
 
-.footer-content p {
+.footer p {
   margin: 0; 
   font-size: 14px;
+  letter-spacing: 0.02em;
   color: #000;
+}
+
+
+
+
+
+
+
+@media (prefers-color-scheme: dark) {
+  .button.is-link {
+    background-color: white; 
+    color: #0c165b; 
+    border: 2px solid white; 
+  }
+
+  .button.is-link:hover {
+    background-color: white; 
+    color: #0c165b;
+    border: 2px solid white;
+  }
+  .footer p {
+    color: #fff;
+  }
+  .field .label {
+    color: #fff;
+  }
 }

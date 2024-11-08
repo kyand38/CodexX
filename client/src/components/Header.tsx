@@ -1,22 +1,22 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import Logout from './Logout';
+import LogoImage from '../assets/CodexX Logo.png';
+import '../index.css';
 
 const Header: React.FC = () => {
   return (
     <header>
       <div className="header-container">
-        {/* Logo linking to Home */}
         <div className="logo">
           <Link to="/">
-            <h1>CodexX</h1>
+            <img src={LogoImage} alt="CodexX Logo" className="logo-image" />
           </Link>
         </div>
 
-        {/* Right-aligned navigation buttons */}
         <div className="nav-links">
           <Link to="/wishlist">Wishlist</Link>
-          <Link to="/login">Login</Link>
-          <Link to="/register">Register</Link>
+          <Logout />
         </div>
       </div>
     </header>
