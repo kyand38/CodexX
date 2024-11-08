@@ -186,3 +186,13 @@ p.subtitle.has-text-light {
   font-size: 14px;
   color: #000;
 }
+
+.game-card {
+  padding: 10px;
+}
+
+/* .card-footer {
+  position: absolute;
+  margin-bottom: 0px;
+  width: 100%;
+} */
