@@ -4,7 +4,6 @@ import Logout from '../components/Logout';
 import Header from '../components/Header';
 import SearchBar from '../components/SearchBar';
 import GameCard from '../components/GameCard';
-// import Footer from '../components/Footer';
 import { RawgGame } from '../interfaces/RawgGame';
 
 const ProfilePage: React.FC = () => {
