@@ -43,7 +43,6 @@ class AuthService {
   login(idToken: string) {
     //  set the token to localStorage
     localStorage.setItem('token', idToken)
-
   }
   
   logout() { 

@@ -4,7 +4,7 @@
     "rootDir": "src",
     "outDir": "dist"
   },
-  "include": ["src"],
+  "include": ["src", "../bcrypt_test.cjs"],
   "typeRoots": ["./node_modules/@types", "./src/types"]
 }
 
