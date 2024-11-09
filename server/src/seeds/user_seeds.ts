@@ -1,7 +1,5 @@
-//username, password, and email attributes needed
-
 import { User } from '../models/index.js'
-import bcrypt from 'bcrypt';
+import * as bcrypt from 'bcrypt';
 
 //sample data to be seeded into database
 export const seedUser = async () => {

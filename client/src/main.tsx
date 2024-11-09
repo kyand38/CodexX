@@ -7,6 +7,8 @@ import ErrorPage from './pages/ErrorPage.tsx';
 import Login from './pages/Login.tsx';
 import LandingPage from './pages/LandingPage.tsx';
 import ProfilePage from './pages/ProfilePage.tsx';
+import WishlistPage from './pages/WishlistPage.tsx'; // Import WishlistPage
+import GameDetail from './pages/GameDetailsPage.tsx'; // Import GameDetail Page
 
 const router = createBrowserRouter([
   {
@@ -29,10 +31,18 @@ const router = createBrowserRouter([
       {
         path: '/profile/:userId',
         element: <ProfilePage />
+      },
+      {
+        path: '/wishlist',
+        element: <WishlistPage />
+      },
+      {
+        path: '/game/:id', // This will match the dynamic game ID
+        element: <GameDetail /> // This is the page that will show the game details
       }
     ]
   }
-])
+]);
 
 const rootElement = document.getElementById('root');
 if (rootElement) {

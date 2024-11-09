@@ -7,8 +7,10 @@ import GameCard from '../components/GameCard';
 import Footer from '../components/Footer';
 import { RawgGame } from '../interfaces/RawgGame';
 
-const HomePage: React.FC = () => {
-  const [games, setGames] = useState<RawgGame[]>([]);
+import { useWishlist } from '../context/WishlistContext';
+
+const WishlistPage: React.FC = () => {
+  const { wishlist, addToWishlist } = useWishlist(); // Get wishlist and addToWishlist
 
   const onSearch = (searchQuery: string) => {
     console.log('Search for:', searchQuery);
@@ -32,20 +34,20 @@ const HomePage: React.FC = () => {
   return (
     <div>
       <Header />
-      {/* Placing the SearchBar separately below the Header */}
-      <SearchBar onSearch={onSearch} /> 
+      <SearchBar onSearch={onSearch} />
+      <h1>My Wishlist</h1>
       <div>
-        {/* Render the first 15 games as GameCard components */}
-        {games.length > 0 ? (
-          games.map((game, index) => (
+        {/* Render games in wishlist */}
+        {wishlist.length > 0 ? (
+          wishlist.map((game, index) => (
             <GameCard
               key={index}
-              game={game} // Pass the entire game object
+              game={game}
               seeMoreButton={game.website} // game.website for the 'See More' button
             />
           ))
         ) : (
-          <p>Loading popular games...</p>
+          <p>Your wishlist is empty.</p>
         )}
       </div>
       <Footer />
@@ -53,4 +55,4 @@ const HomePage: React.FC = () => {
   );
 };
 
-export default HomePage;
+export default WishlistPage;

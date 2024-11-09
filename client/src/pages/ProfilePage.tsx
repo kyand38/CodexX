@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { rawgService } from '../service/rawgService';
-import Logout from '../components/Logout';
 import Header from '../components/Header';
 import SearchBar from '../components/SearchBar';
 import GameCard from '../components/GameCard';
@@ -8,6 +7,7 @@ import { RawgGame } from '../interfaces/RawgGame';
 
 const ProfilePage: React.FC = () => {
   const [games, setGames] = useState<RawgGame[]>([]);
+  const [error, setError] = useState<string | null>(null);
 
   const onSearch = (searchQuery: string) => {
     console.log('Search for:', searchQuery);
@@ -19,10 +19,16 @@ const ProfilePage: React.FC = () => {
     const fetchPopularGames = async () => {
       try {
         const fetchedGames = await rawgService.getGames();
-        setGames(fetchedGames.results);
-        console.log(fetchedGames);
+        // Ensure that results exists and is an array
+        if (fetchedGames && Array.isArray(fetchedGames.results)) {
+          setGames(fetchedGames.results);
+        } else {
+          console.error('Fetched games are not in expected format:', fetchedGames);
+          setError('Error: Fetched games are not in the expected format.');
+        }
       } catch (error) {
         console.error('Error fetching popular games:', error);
+        setError('Error fetching popular games. Please try again later.');
       }
     };
 
@@ -32,18 +38,17 @@ const ProfilePage: React.FC = () => {
   return (
     <div>
       <Header />
-      <Logout/>
-      {/* Pass onSearch function as prop */}
-      {/* Placing the SearchBar separately below the Header */}
       <SearchBar onSearch={onSearch} /> 
+      <p id="games-title">Games</p>
       <div className="grid is-col-min-16">
-        {/* Render the first 15 games as GameCard components */}
-        {games.length > 0 ? (
+        {error ? (
+          <p>{error}</p>
+        ) : games.length > 0 ? (
           games.map((game, index) => (
             <GameCard
               key={index}
-              game={game} // Pass the entire game object
-              seeMoreButton={game.website} // game.website for the 'See More' button
+              game={game}
+              seeMoreButton={game.website}
             />
           ))
         ) : (
