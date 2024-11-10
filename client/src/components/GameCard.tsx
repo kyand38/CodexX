@@ -48,7 +48,7 @@ const GameCard: React.FC<GameCardProps> = ({ game }) => {
           See Details
         </Link>
         <button
-          className="card-footer-item"
+          className="add-to-wishlist card-footer-item"
           onClick={() => addToWishlist(game)}
         >
           Add to Wishlist
