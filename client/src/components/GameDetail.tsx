@@ -2,7 +2,7 @@ import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { RawgDevelopmentTeam, RawgGame } from '../interfaces/RawgGame';
 import { rawgService } from '../service/rawgService';
-import { concatDevelopmentTeam } from '../utils/helpers';
+import { listDevelopmentTeam } from '../utils/helpers';
 
 const GameDetail: React.FC = () => {
   const { id } = useParams(); // Get the game ID from the URL
@@ -39,14 +39,14 @@ const GameDetail: React.FC = () => {
     return <div>Loading...</div>; // Handle loading state
   }
 
-  const devTeamString = concatDevelopmentTeam(devs);
+  const devTeamString = listDevelopmentTeam(devs);
 
   return (
     <div className="game-detail">
       <section className="hero">
         <div className="hero-body">
-          <p className="game-detail-title title is-4">{game.name}</p>
-          <p className="game-detail-title subtitle">Metacritic - {game.metacritic}</p>
+          <p className="game-detail-title title is-2">{game.name}</p>
+          <p className="game-detail-title subtitle is-4">Metacritic - {game.metacritic}</p>
         </div>
       </section>
       <div className="columns">
@@ -54,7 +54,10 @@ const GameDetail: React.FC = () => {
           <img className="game-art" src={game.background_image} alt={`Artwork from ${game.name}`} />
         </div>
         <div className="column is-one-third">
-          <div dangerouslySetInnerHTML={{ __html: game.description }}></div>
+          <h1 className="title">
+            Development Team
+          </h1>
+          <ul dangerouslySetInnerHTML={{ __html: devTeamString }}></ul>
         </div>
       </div>
       <div className="columns">
@@ -69,10 +72,8 @@ const GameDetail: React.FC = () => {
         </div>
       </div>
       <div>
-        <h1 className="title">
-          Development Team
-        </h1>
-        <p dangerouslySetInnerHTML={{ __html: devTeamString }}></p>
+        <h1 className="title is-4">Description</h1>
+        <div dangerouslySetInnerHTML={{ __html: game.description }}></div>
       </div>
       {/* Render more details as needed */}
     </div>
