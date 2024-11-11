@@ -9,13 +9,13 @@ const Header: React.FC = () => {
     <header>
       <div className="header-container">
         <div className="logo">
-          <Link to="/">
+          <Link to="/profile/:userId">
             <img src={LogoImage} alt="CodexX Logo" className="logo-image" />
           </Link>
         </div>
 
         <div className="nav-links">
-          <Link to="/wishlist">Wishlist</Link>
+          <Link to="/wishlist">See Wishlist</Link>
           <Logout />
         </div>
       </div>
