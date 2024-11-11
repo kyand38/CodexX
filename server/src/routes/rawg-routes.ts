@@ -49,4 +49,18 @@ router.get('/search/:game', async (req: Request, res: Response) => {
   }
 });
 
+  // --------------DEVELOPMENT TEAM----------------
+  router.get('/devteam/:id', async (req: Request, res: Response) => {
+    try {
+      const url = `${process.env.REQUEST_URL}games/${req.params.id}/development-team?key=${process.env.API_KEY}`;
+      console.log(`Fetching URL: ${url}`);
+      const response = await fetch(url);
+      const data = await response.json();
+      res.json(data);
+    } catch (error: any) {
+      console.log("Error in /devteam/:id route:", error.message);
+      res.status(500).json({ message: error.message });
+    }
+});
+
 export default router;
