@@ -1,50 +1,44 @@
 import React, { useEffect, useState } from 'react';
-import { rawgService } from '../service/rawgService';
-
+// import { rawgService } from '../service/rawgService';
 import Header from '../components/Header';
 import SearchBar from '../components/SearchBar';
 import GameCard from '../components/GameCard';
 import Footer from '../components/Footer';
 import { RawgGame } from '../interfaces/RawgGame';
 
-import { useWishlist } from '../context/WishlistContext';
-
 const WishlistPage: React.FC = () => {
-  const { wishlist, addToWishlist } = useWishlist(); // Get wishlist and addToWishlist
+  const [wishlist, setWishlist] = useState<RawgGame[]>([]);
+  const [error, setError] = useState<string | null>(null);
 
-  const onSearch = (searchQuery: string) => {
-    console.log('Search for:', searchQuery);
-    // Add filter logic here based on the search query
+  const fetchWishlist = async () => {
+    try {
+      const response = await fetch('/api/wishlist', {
+        headers: { Authorization: `Bearer ${localStorage.getItem('id_token')}` },
+      });
+      if (!response.ok) throw new Error('Failed to fetch wishlist.');
+      const data = await response.json();
+      setWishlist(data);
+    } catch (err) {
+      console.error('Error fetching wishlist:', err);
+      setError('Could not load wishlist.');
+    }
   };
 
-  // Fetch popular games when the page loads
   useEffect(() => {
-    const fetchPopularGames = async () => {
-      try {
-        const fetchedGames = await rawgService.getGames(); // Get 15 games for the first page
-        setGames(fetchedGames.results);
-      } catch (error) {
-        console.error('Error fetching popular games:', error);
-      }
-    };
-
-    fetchPopularGames();
+    fetchWishlist();
   }, []);
 
   return (
     <div>
       <Header />
-      <SearchBar onSearch={onSearch} />
+      <SearchBar onSearch={(query) => console.log('Search for:', query)} />
       <h1>My Wishlist</h1>
       <div>
-        {/* Render games in wishlist */}
-        {wishlist.length > 0 ? (
+        {error ? (
+          <p>{error}</p>
+        ) : wishlist.length > 0 ? (
           wishlist.map((game, index) => (
-            <GameCard
-              key={index}
-              game={game}
-              seeMoreButton={game.website} // game.website for the 'See More' button
-            />
+            <GameCard key={index} game={game} seeMoreButton={game.website} />
           ))
         ) : (
           <p>Your wishlist is empty.</p>

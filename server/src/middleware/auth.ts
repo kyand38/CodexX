@@ -6,16 +6,20 @@ interface JwtPayload {
   username: string;
 }
 
+// Extend the Request interface to include user property
+interface AuthenticatedRequest extends Request {
+  user?: JwtPayload;
+}
+
 export const authenticateToken = (
-  req: Request,
+  req: AuthenticatedRequest, // Use the enhanced request type
   res: Response,
   next: NextFunction
 ) => {
-  const authHeader = req.headers.authorization; //maybe need be a let
+  const authHeader = req.headers.authorization;
 
   if (authHeader) {
     const token = authHeader.split(' ')[1];
-
     const secretKey = process.env.JWT_SECRET_KEY || '';
 
     jwt.verify(token, secretKey, (err, user) => {
@@ -23,6 +27,7 @@ export const authenticateToken = (
         return res.sendStatus(403); // Forbidden
       }
 
+      // Attach the user object to req, now accessible as `req.user`
       req.user = user as JwtPayload;
       return next();
     });
