@@ -2,6 +2,8 @@
 //title, genre, platform, releaseDate, imageUrl
 import { Game } from "../models/index.js";
 
+//Function that will seed the games
+//try/catch function to catch if any errors occur
 export const seedGames = async () => {
     try {
         const games = [
