@@ -36,7 +36,7 @@ router.get('/games', async (_: Request, res: Response) => {
 });
 
 router.get('/search/:game', async (req: Request, res: Response) => {
-  console.log("hi, you made it to the server");
+  // console.log("hi, you made it to the server");
   try {
     const url = `${process.env.REQUEST_URL}games?search=${req.params.game}&key=${process.env.API_KEY}`;
     console.log(`Fetching URL: ${url}`);
