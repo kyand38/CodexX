@@ -3,15 +3,26 @@ import { rawgService } from '../service/rawgService';
 import Header from '../components/Header';
 import SearchBar from '../components/SearchBar';
 import GameCard from '../components/GameCard';
-import { RawgGame } from '../interfaces/RawgGame';
+import { RawgGame, RawgGames } from '../interfaces/RawgGame';
 
 const ProfilePage: React.FC = () => {
   const [games, setGames] = useState<RawgGame[]>([]);
   const [error, setError] = useState<string | null>(null);
 
-  const onSearch = (searchQuery: string) => {
+  const onSearch = async (searchQuery: string) => {
     console.log('Search for:', searchQuery);
     // Add filter logic here based on the search query
+    try {
+      const searchResults = await rawgService.searchGame(searchQuery);
+      console.log(searchResults);
+      if (!searchResults) {
+        setError('No games found.');
+      } else {
+        setGames(searchResults.results);
+      }
+    } catch (error) {
+      setError('Error searching for game.')
+    };
   };
 
   // Fetch popular games when the page loads
@@ -52,7 +63,7 @@ const ProfilePage: React.FC = () => {
             />
           ))
         ) : (
-          <p>Loading popular games...</p>
+          <p id="loading-message">Loading popular games...</p>
         )}
       </div>
     </div>

@@ -42,8 +42,9 @@ class RawgService {
     return data;
   }
 
-  async searchGame(gameName: string): Promise<RawgGames | RawgGame> {
-    const response = await fetch(`/api/rawg/game/${gameName}`);
+  async searchGame(gameName: string): Promise<RawgGames> {
+    const response = await fetch(`/api/rawg/search/${gameName}`);
+    console.log(response);
     const data = await response.json();
     return data;
   }

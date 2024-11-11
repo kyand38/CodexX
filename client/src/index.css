@@ -56,6 +56,8 @@ button:focus-visible {
 
 */
 
+/* ----- Gloabl Styles ----- */
+
 /* Button Styles */
 .button.is-link {
   background-color: #0c165b;
@@ -64,12 +66,70 @@ button:focus-visible {
 }
 
 .button.is-link:hover {
-  background-color: white; 
-  color: #0c165b; 
-  border: 2px solid #0c165b; 
+  background-color: white;
+  color: #0c165b;
+  border: 2px solid #0c165b;
 }
 
-/* Get Started Button */
+.has-background-dark {
+  background-color: #fff !important;
+}
+
+/* ----- Landing Page Styles ----- */
+.hero {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.hero-body {
+  flex-grow: 0;
+  flex-shrink: 0;
+}
+
+.landing-logo {
+  margin: 0 auto 20px;
+  max-width: 150px;
+  padding: 0px 0px 30px 0px;
+}
+
+.landing-page .container {
+  padding: 50px;
+  border-radius: 15px;
+  background: linear-gradient(to bottom, #de1f7c, #992694, #2b317f, #0c165b, #000);
+  min-height: auto;
+  height: auto;
+  display: block;
+}
+
+/* H1 Style */
+h1.title.has-text-white {
+  font-size: 45px;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+/* Subtitle Style */
+p em {
+  font-size: 22px;
+  text-align: center;
+  color: #fff;
+}
+
+/* Paragraphs Style */
+.container p {
+  color: #e8e8e8;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.container p strong {
+  color: #e8e8e8;
+  font-size: 14px;
+  letter-spacing: 0.025em;
+}
+
+/* Get Started Button Style */
 .button.is-link.mt-5 {
   background-color: #fff;
   color: #0c165b;
@@ -82,71 +142,13 @@ button:focus-visible {
   border: 2px solid #de1f7c;
 }
 
-
-/* Header */
-.hero-body {
-  position: relative;
-}
-
-.container p {
-  font-size: 15px;
-  font-weight: lighter;
-  color: inherit;
-}
-
-.container strong {
-  font-size: 15px;
-  
-}
-
-.title:not(.is-spaced):has(+.subtitle) {
-  margin-bottom: 25px;
-  font-size: 55px;
-}
-
-p.subtitle.has-text-light {
-  margin-bottom: 50px;
-  color: #fff;
-  font-size: 25px;
-}
-
-
-
-
-
-/* Landing Page Styles */
-.hero-body {
-  position: relative;
-  background-color: #fff;
-}
-
-.landing-page .container {
-  border-width: 2px;
-  padding: 50px;
-  border-radius: 15px;
-  background: linear-gradient(to bottom, #de1f7c, #992694, #2b317f, #0c165b);
-}
-
-.container p {
-  font-size: 15px;
-  font-weight: lighter;
-  color: #ececec;
-}
-
-.container strong {
-  color: #ececec;
-  font-size: 15px;
-}
-
-
-/* Login/Register Page Styles */
+/* ----- Login/Register Page Styles ----- */
 .box {
-  background-color: inherit;
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   padding: 40px;
-  width: 100%; 
-  max-width: 500px; 
+  width: 100%;
+  max-width: 500px;
   margin: 50px auto;
 }
 
@@ -157,7 +159,7 @@ p.subtitle.has-text-light {
 }
 
 .field {
-  text-align: center; /* Centers content horizontally inside the div */
+  text-align: center;
 }
 
 .field .label {
@@ -174,13 +176,11 @@ p.subtitle.has-text-light {
   margin-bottom: 15px;
 }
 
-/* Header Page Styles */
-
+/* ----- Header Page Styles ----- */
 header {
   margin: 25px 0px;
   width: 100%;
   padding: 0 20px;
-  background-color: inherit;
 }
 
 .header-container {
@@ -201,7 +201,7 @@ header {
 
 .nav-links {
   display: flex;
-  gap: 20px; 
+  gap: 20px;
   align-items: center;
 }
 
@@ -253,20 +253,19 @@ form input[type="text"] {
   width: 100%;
 }
 
-/* ----- Style the search button ----- */
 form button {
-  background-color: #0c165b; 
-  color: white; 
-  border: 2px solid #0c165b; 
+  background-color: #0c165b;
+  color: white;
+  border: 2px solid #0c165b;
   padding: 8px 16px;
   transition: color 0.3s;
   border-radius: 4px;
 }
 
 form button:hover {
-  background-color: white; 
-  color: #0c165b; 
-  border: 2px solid #0c165b; 
+  background-color: white;
+  color: #0c165b;
+  border: 2px solid #0c165b;
 }
 
 #games-title {
@@ -275,22 +274,112 @@ form button:hover {
   padding: 25px 0px 25px 0px;
 }
 
+#loading-message {
+  color: #000;
+}
+
+/* ----- Styles for the GameCards ----- */
+#wishlist-title {
+  font-size: 36px;
+  color: #de1f7c;
+  padding: 25px 0px 25px 0px;
+}
+
+.game-card {
+  margin: 0 15px;
+  transition: transform 0.3s ease;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+  height: 850px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background-color: #fff;
+}
+
+.game-card:hover {
+  transform: scale(1.05);
+}
+
+.game-card .card-image .image img {
+  width: 100%;
+  height: 250px;
+  object-fit: cover;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+}
+
+.game-card__title {
+  color: #b242a8;
+  padding: 10px;
+}
+
+.tag.is-medium {
+  background-color: #d7d7d7;
+  color: #000;
+  padding: 5px 10px;
+  border-radius: 4px;
+}
+
+.game-card__genres,
+.game-card__platforms,
+.game-card__rating {
+  color: #000 !important;
+  padding: 0px 0px 25px 0px;
+}
 
 
+/* Ensure footer stays at the bottom */
+.card-footer {
+  margin-top: auto;
+  text-align: center;
+  display: flex;
+  justify-content: space-between;
+}
 
+/* Styling for 'See Details' and 'Add to Wishlist' links */
+.game-card__link,
+.card-footer-item {
+  background-color: #0c165b;
+  color: white;
+  border: 2px solid #0c165b;
+  flex: 1;
+  text-align: center;
+  transition: color 0.2s ease, background-color 0.2s ease;
+}
 
+.game-card__link:hover,
+.card-footer-item:hover {
+  background-color: white;
+  color: #0c165b;
+  border: 2px solid #0c165b;
+}
 
-/* Style for Footer */
+.game-card__link {
+  border-radius: 0px 0px 0px 8px;
+}
+
+.add-to-wishlist {
+  border-radius: 0px 0px 8px 0px;
+}
+
+.wishlist-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.75rem;
+}
+
+/* ----- Style for Footer ----- */
 .footer {
   display: flex;
   align-items: center;
-  padding: 20px;
+  padding: 15px;
   justify-content: center;
   position: fixed;
   left: 0;
   right: 0;
   bottom: 0;
-  width: 100%;  
+  width: 100%;
   z-index: 10;
   background-color: #fff;
 }
@@ -307,40 +396,109 @@ form button:hover {
 }
 
 .footer p {
-  margin: 0; 
+  margin: 0;
   font-size: 14px;
   letter-spacing: 0.02em;
   color: #000;
 }
 
-
-
-
-
-
+/* ----- Styles for Dark Mode ----- */
 
 @media (prefers-color-scheme: dark) {
+  /* ----- Gloabl Styles ----- */
+
+  /* Button Styles */
   .button.is-link {
-    background-color: white; 
-    color: #0c165b; 
-    border: 2px solid white; 
+    background-color: #fff;
+    color: #0c165b;
+    border: 2px solid #fff;
   }
 
   .button.is-link:hover {
-    background-color: white; 
-    color: #0c165b;
-    border: 2px solid white;
-  }
-  .footer p {
+    background-color: #de1f7c;
     color: #fff;
+    border: 2px solid #de1f7c;
   }
+
+  .has-background-dark {
+    background-color: #252525 !important;
+  }
+
   .field .label {
+    font-weight: lighter;
+    font-size: 16px;
     color: #fff;
   }
-  .footer {
-    background-color: #000;
+
+  .nav-links a[href="/wishlist"] {
+    color: #fff;
   }
-  
+
+  .nav-links a[href="/wishlist"]:hover {
+    color: #de1f7c;
+  }
+
+  #logout-button a {
+    color: #0c165b;
+  }
+
+  #logout-button:hover a {
+    color: #fff;
+  }
+
+  form input[type="text"] {
+    border: 1.5px solid #3f3f3f;
+  }
+
+  form button {
+    background-color: #fff;
+    color: #0c165b;
+    border: 2px solid #fff;
+  }
+
+  form button:hover {
+    background-color: #de1f7c;
+    color: #fff;
+    border: 2px solid #de1f7c;
+  }
+
+  #loading-message {
+    color: #fff;
+  }
+
+  .game-card {
+    background-color: #3f3f3f;
+  }
+
+  .tag.is-medium {
+    background-color: #3f3f3f;
+    color: #fff;
+  }
+
+  .game-card__genres,
+  .game-card__platforms,
+  .game-card__rating {
+    color: #fff !important;
+  }
+
+  .game-card__link,
+  .card-footer-item {
+    background-color: #fff;
+    color: #0c165b;
+    border: 2px solid #fff;
+  }
+
+  .game-card__link:hover,
+  .card-footer-item:hover {
+    background-color: #de1f7c;
+    color: #fff;
+    border: 2px solid #de1f7c;
+  }
+
+  .footer {
+    background-color: #252525;
+  }
+
   .footer p {
     color: #fff;
   }

@@ -1,5 +1,5 @@
 import { DataTypes, type Sequelize, Model, type Optional } from 'sequelize';
-import * as bcrypt from 'bcrypt';
+import bcrypt from 'bcrypt';
 
 //Define User model with attributes
 export interface UserAttributes {

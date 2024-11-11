@@ -35,24 +35,26 @@ const GameCard: React.FC<GameCardProps> = ({ game }) => {
           <p className="game-card__platforms">{concatPlatforms(game)}</p>
 
           <p className="tag is-medium">Stores</p>
-          <p className="game-card__platforms">{concatStores(game)}</p>
+          <p className="game-card__platforms">{(game.stores) ? concatStores(game) : "No info available"}</p>
 
           <div className="game-card__rating tag is-medium">
-            Metacritic: {game.metacritic}
+            Metacritic: {(game.metacritic) ? game.metacritic : "N/A"}
           </div>
         </div>
       </div>
+
       <footer className="card-footer">
         <Link to={`/game/${game.id}`} className="game-card__link card-footer-item">
           See Details
         </Link>
         <button
-          className="card-footer-item"
+          className="add-to-wishlist card-footer-item"
           onClick={() => addToWishlist(game)}
         >
           Add to Wishlist
         </button>
       </footer>
+
     </div>
   );
 };
