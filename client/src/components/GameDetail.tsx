@@ -1,40 +1,38 @@
-import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-
-interface Game {
-  id: number;
-  title: string;
-  genre: string;
-  platform: string;
-  description: string;
-}
+import { useEffect, useState } from 'react';
+import { RawgGame } from '../interfaces/RawgGame';
 
 const GameDetail: React.FC = () => {
-  const { id } = useParams<{ id: string }>();
-  const [game, setGame] = useState<Game | null>(null);
+  const { id } = useParams(); // Get the game ID from the URL
+  const [game, setGame] = useState<RawgGame | null>(null);
 
   useEffect(() => {
+    // Fetch game details using the ID
     const fetchGameDetails = async () => {
-      const response = await fetch(`/api/games/${id}`);
-      const data = await response.json();
-      setGame(data);
+      try {
+        const response = await fetch(`https://api.rawg.io/api/games/${id}`);
+        const data = await response.json();
+        setGame(data);
+      } catch (error) {
+        console.error('Error fetching game details:', error);
+      }
     };
 
-    fetchGameDetails();
+    if (id) {
+      fetchGameDetails();
+    }
   }, [id]);
+
+  if (!game) {
+    return <div>Loading...</div>; // Handle loading state
+  }
 
   return (
     <div className="game-detail">
-      {game ? (
-        <>
-          <h2>{game.title}</h2>
-          <p>Genre: {game.genre}</p>
-          <p>Platform: {game.platform}</p>
-          <p>Description: {game.description}</p>
-        </>
-      ) : (
-        <p>Loading game details...</p>
-      )}
+      <h2>{game.name}</h2>
+      <img src={game.background_image} alt={game.name} />
+      <p>{game.description}</p>
+      {/* Render more details as needed */}
     </div>
   );
 };

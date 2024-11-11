@@ -1,19 +1,17 @@
 import { useState, FormEvent, ChangeEvent } from 'react';
-import { signup } from '../api/authAPI.js';
+import { signup, login } from '../api/authAPI.js';
 import Auth from '../utils/auth.js';
-import { login } from '../api/authAPI.js';
+import { useNavigate } from 'react-router-dom';
 
 const Login = () => {
   const [isSignup, setIsSignup] = useState(false);
-  const [formData, setFormData] = useState<{
-    username: string;
-    password: string;
-    email: string;
-  }>({
+  const [formData, setFormData] = useState({
     username: '',
     password: '',
     email: ''
   });
+
+  const navigate = useNavigate(); // Initialize navigate function
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -30,7 +28,10 @@ const Login = () => {
         ? await signup(formData) // Call signup function if in signup mode
         : await login(formData);  // Call login function otherwise
 
-      Auth.login(data.token);
+      Auth.login(data.token); // Store the token in localStorage or session
+
+      // Redirect to profile page using the userId
+      navigate(`/profile/${data.userId}`);
     } catch (err) {
       alert(isSignup ? 'Signup failed' : 'Login failed');
       console.error(`Failed to ${isSignup ? 'signup' : 'login'}`, err);
@@ -42,7 +43,7 @@ const Login = () => {
       <div className="columns is-centered">
         <div className="column is-half">
           <form className='box' onSubmit={handleSubmit}>
-            <h1 className="title is-3 has-text-centered">
+            <h1 className="title is-3 has-text-link has-text-centered">
               {isSignup ? 'Sign Up' : 'Login'}
             </h1>
             <div className="field">
@@ -86,21 +87,19 @@ const Login = () => {
                 />
               </div>
             </div>
-            <div className="field is-grouped is-grouped-centered mt-4">
-              <p className="control">
-                <button className="button is-primary" type="submit">
-                  {isSignup ? 'Sign Up' : 'Login'}
-                </button>
-              </p>
-              <p className="control">
-                <button
-                  className="button is-link is-light"
-                  type="button"
-                  onClick={() => setIsSignup(!isSignup)}
-                >
-                  {isSignup ? 'Already have an account? Log in' : 'Need an account? Sign up'}
-                </button>
-              </p>
+            <div className="field">
+              <button className="button is-link is-login" type="submit">
+                {isSignup ? 'Sign Up' : 'Login'}
+              </button>
+            </div>
+            <div className="field">
+              <button
+                className="button is-link is-light is-outlined is-signup"
+                type="button"
+                onClick={() => setIsSignup(!isSignup)}
+              >
+                {isSignup ? 'Already have an account? Log in' : 'Need an account? Sign up'}
+              </button>
             </div>
           </form>
         </div>

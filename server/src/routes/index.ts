@@ -1,11 +1,17 @@
 import { Router } from 'express';
+
 import authRoutes from './auth-routes.js';
-import apiRoutes from './api/index.js';
-import { authenticateToken } from '../middleware/auth.js';
+import gameRoutes from './games-routes.js';
+import libraryEntryRoutes from './libEntry-routes.js';
+import rawgRoutes from './rawg-routes.js';
+
 
 const router = Router();
 
 router.use('/auth', authRoutes);
-router.use('/api', authenticateToken, apiRoutes);
+router.use('/games', gameRoutes);
+router.use('/library', libraryEntryRoutes);
+router.use('/rawg', rawgRoutes);
+
 
 export default router;

@@ -1,17 +1,18 @@
 import { Outlet } from 'react-router-dom';
-
-// import Navbar from './components/Navbar';
+import Footer from './components/Footer';
+import { WishlistProvider } from './context/WishlistContext';
 
 function App() {
-
   return (
-    <div className='container'>
-      {/* <Navbar /> */}
-      <main>
-        <Outlet />
-      </main>
-    </div>
-  )
+    <WishlistProvider>
+      <div className="container">
+        <main>
+          <Outlet />
+        </main>
+        <Footer />
+      </div>
+    </WishlistProvider>
+  );
 }
 
-export default App
+export default App;
