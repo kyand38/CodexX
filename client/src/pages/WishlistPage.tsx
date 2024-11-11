@@ -8,33 +8,33 @@ import { RawgGame } from '../interfaces/RawgGame';
 const WishlistPage: React.FC = () => {
   const [wishlist, setWishlist] = useState<RawgGame[]>([]);
   const [error, setError] = useState<string | null>(null);
+  const [__loading, setLoading] = useState<boolean>(true);
 
   const fetchWishlist = async () => {
+    setLoading(true);
     try {
-      // Use the correct endpoint for fetching library entries
       const response = await fetch('/api/library/library-entries', {
         headers: { Authorization: `Bearer ${localStorage.getItem('id_token')}` },
       });
       if (!response.ok) throw new Error('Failed to fetch wishlist.');
 
-      // Assuming data is an array of library entries, each with game details
       const data = await response.json();
-      
-      // Map library entries to RawgGame format for display
       const formattedWishlist = data.map((entry: any) => ({
-        id: entry.gameDetails.id,
-        title: entry.gameDetails.title,
-        genre: entry.gameDetails.genre,
-        platform: entry.gameDetails.platform,
-        releaseDate: entry.gameDetails.releaseDate,
-        imageUrl: entry.gameDetails.imageUrl,
-        website: entry.gameDetails.website, // assuming game details include website
+        id: entry.Game?.id || 0,
+        title: entry.Game?.title || 'Untitled',
+        genre: entry.Game?.genre || 'Unknown Genre',
+        platform: entry.Game?.platform || 'Unknown Platform',
+        releaseDate: entry.Game?.releaseDate || '',
+        imageUrl: entry.Game?.imageUrl || '',
+        website: entry.Game?.website || '', // add other defaults as needed
       }));
-
       setWishlist(formattedWishlist);
+      setError(null);
     } catch (err) {
       console.error('Error fetching wishlist:', err);
       setError('Could not load wishlist.');
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -52,14 +52,13 @@ const WishlistPage: React.FC = () => {
       <Header />
       <SearchBar onSearch={onSearch} />
       <h1 id="wishlist-title">My Wishlist</h1>
-      
+
       <div className="wishlist-grid">
-        {/* Render games in wishlist */}
         {error ? (
           <p>{error}</p>
         ) : wishlist.length > 0 ? (
           wishlist.map((game, index) => (
-            <GameCard key={index} game={game} seeMoreButton={game.website} />
+            <GameCard key={index} game={game} seeMoreButton={game.website} />// Pass only `gameId`
           ))
         ) : (
           <p id="loading-message">Your wishlist is empty.</p>
