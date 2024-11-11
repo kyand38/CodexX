@@ -3,11 +3,16 @@ import { useEffect, useState } from 'react';
 import { RawgDevelopmentTeam, RawgGame } from '../interfaces/RawgGame';
 import { rawgService } from '../service/rawgService';
 import { listDevelopmentTeam } from '../utils/helpers';
+interface GameDetailProps {
 
-const GameDetail: React.FC = () => {
+  game: any; // Define the type of the game prop as needed
+
+}
+const GameDetail: React.FC<GameDetailProps> = () => {
   const { id } = useParams(); // Get the game ID from the URL
   const [game, setGame] = useState<RawgGame | null>(null);
   const [devs, setDevs] = useState<RawgDevelopmentTeam>(Object);
+  
 
   useEffect(() => {
     // Fetch game details using the ID

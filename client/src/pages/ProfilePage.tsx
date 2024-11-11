@@ -3,7 +3,7 @@ import { rawgService } from '../service/rawgService';
 import Header from '../components/Header';
 import SearchBar from '../components/SearchBar';
 import GameCard from '../components/GameCard';
-import { RawgGame, RawgGames } from '../interfaces/RawgGame';
+import { RawgGame } from '../interfaces/RawgGame';
 
 const ProfilePage: React.FC = () => {
   const [games, setGames] = useState<RawgGame[]>([]);
