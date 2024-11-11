@@ -1,5 +1,5 @@
 import { User } from '../models/index.js'
-import * as bcrypt from 'bcrypt';
+import bcrypt from 'bcrypt';
 
 //sample data to be seeded into database
 export const seedUser = async () => {
