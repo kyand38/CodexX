@@ -63,7 +63,7 @@ const ProfilePage: React.FC = () => {
             />
           ))
         ) : (
-          <p>Loading popular games...</p>
+          <p id="loading-message">Loading popular games...</p>
         )}
       </div>
     </div>

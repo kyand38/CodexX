@@ -10,7 +10,8 @@ import { RawgGame } from '../interfaces/RawgGame';
 import { useWishlist } from '../context/WishlistContext';
 
 const WishlistPage: React.FC = () => {
-  const { wishlist, addToWishlist } = useWishlist(); // Get wishlist and addToWishlist
+  const { wishlist } = useWishlist(); // Removed addToWishlist
+  const [games, setGames] = useState<RawgGame[]>([]); // Added games state
 
   const onSearch = (searchQuery: string) => {
     console.log('Search for:', searchQuery);
@@ -35,8 +36,9 @@ const WishlistPage: React.FC = () => {
     <div>
       <Header />
       <SearchBar onSearch={onSearch} />
-      <h1>My Wishlist</h1>
-      <div>
+      <h1 id="wishlist-title">My Wishlist</h1>
+      
+      <div className="wishlist-grid">
         {/* Render games in wishlist */}
         {wishlist.length > 0 ? (
           wishlist.map((game, index) => (
@@ -47,7 +49,7 @@ const WishlistPage: React.FC = () => {
             />
           ))
         ) : (
-          <p>Your wishlist is empty.</p>
+          <p id="loading-message">Your wishlist is empty.</p>
         )}
       </div>
       <Footer />
