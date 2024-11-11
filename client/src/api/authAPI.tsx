@@ -17,12 +17,22 @@ const login = async (userInfo: UserLogin) => {
     }
 
     const data = await response.json();
+
+    // Store the token in localStorage
+    if (data.token) {
+      localStorage.setItem('id_token', data.token);
+      console.log(localStorage.getItem('id_token'));
+    } else {
+      console.error('Token not found in response');
+      throw new Error('Token missing in login response');
+    }
+
     return data;
   } catch (err) {
     console.error('Error from user login:', err);
     return Promise.reject('Could not fetch user info');
   }
-}
+};
 
 export const signup = async (formData: { username: string; email: string; password: string }) => {
   try {

@@ -12,26 +12,29 @@ interface AuthenticatedRequest extends Request {
 }
 
 export const authenticateToken = (
-  req: AuthenticatedRequest, // Use the enhanced request type
+  req: AuthenticatedRequest, 
   res: Response,
   next: NextFunction
 ) => {
   const authHeader = req.headers.authorization;
+  console.log("Authorization Header in Request:", authHeader);
 
   if (authHeader) {
     const token = authHeader.split(' ')[1];
     const secretKey = process.env.JWT_SECRET_KEY || '';
 
-    jwt.verify(token, secretKey, (err, user) => {
+    return jwt.verify(token, secretKey, (err, user) => {
       if (err) {
-        return res.sendStatus(403); // Forbidden
+        console.error("Token verification failed:", err.message); // Log specific error
+        return res.status(403).json({ message: 'Token is invalid or expired' });
       }
 
-      // Attach the user object to req, now accessible as `req.user`
       req.user = user as JwtPayload;
-      return next();
+      console.log("Decoded user ID:", req.user.id); // Log after setting `req.user`
+      return next(); // Ensure next() is called on successful verification
     });
   } else {
-    res.sendStatus(401); // Unauthorized
+    console.error("Authorization header missing");
+    return res.status(401).json({ message: 'Authorization header missing' });
   }
 };
