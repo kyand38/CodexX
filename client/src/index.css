@@ -83,7 +83,12 @@ main {
 /* ----- Game Detail Styles ----- */
 
 .game-detail .hero {
-  background: linear-gradient(to bottom, #de1f7c, #992694, #2b317f, #0c165b, #000);
+  background: linear-gradient(to bottom, #de1f7c, #992694, #2b317f, #0c165b, #000000);
+  border-radius: 10px;
+}
+
+.game-art {
+  border-radius: 10px;
 }
 
 /* ----- Landing Page Styles ----- */
@@ -107,7 +112,7 @@ main {
 .landing-page .container {
   padding: 50px;
   border-radius: 15px;
-  background: linear-gradient(to bottom, #de1f7c, #992694, #2b317f, #0c165b, #000);
+  background: linear-gradient(to bottom, #de1f7c, #992694, #2b317f, rgb(12, 22, 91), #000);
   min-height: auto;
   height: auto;
   display: block;
@@ -513,4 +518,12 @@ form button:hover {
   .footer p {
     color: #fff;
   }
+}
+
+@media (prefers-color-scheme: light) {
+
+  .game-detail-title {
+    color:#ffffff;
+  }
+
 }

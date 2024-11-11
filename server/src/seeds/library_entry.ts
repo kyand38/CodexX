@@ -3,6 +3,8 @@
 // It includes an additional rating attribute to represent the user’s rating of the game.
 import { LibraryEntry } from "../models/index.js";
 
+//Function that will seed the library entries with these attributes
+//try/catch function to catch any errors
 export const seedLibraryEntries = async () => {
     try {
         const entries = [
