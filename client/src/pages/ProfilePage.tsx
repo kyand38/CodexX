@@ -10,8 +10,8 @@ const ProfilePage: React.FC = () => {
   const [error, setError] = useState<string | null>(null);
 
   const onSearch = async (searchQuery: string) => {
-    console.log('Search for:', searchQuery);
-    // Add filter logic here based on the search query
+    // console.log('Search for:', searchQuery);
+
     try {
       const searchResults = await rawgService.searchGame(searchQuery);
       console.log(searchResults);

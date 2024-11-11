@@ -58,6 +58,11 @@ button:focus-visible {
 
 /* ----- Gloabl Styles ----- */
 
+/* Move main up to account for fixed footer */
+main {
+  padding-bottom: 100px;
+}
+
 /* Button Styles */
 .button.is-link {
   background-color: #0c165b;
@@ -73,6 +78,12 @@ button:focus-visible {
 
 .has-background-dark {
   background-color: #fff !important;
+}
+
+/* ----- Game Detail Styles ----- */
+
+.game-detail .hero {
+  background: linear-gradient(to bottom, #de1f7c, #992694, #2b317f, #0c165b, #000);
 }
 
 /* ----- Landing Page Styles ----- */
@@ -118,13 +129,13 @@ p em {
 
 /* Paragraphs Style */
 .container p {
-  color: #e8e8e8;
+  /* color: #e8e8e8; */
   font-size: 14px;
   line-height: 1.6;
 }
 
 .container p strong {
-  color: #e8e8e8;
+  /* color: #e8e8e8; */
   font-size: 14px;
   letter-spacing: 0.025em;
 }
