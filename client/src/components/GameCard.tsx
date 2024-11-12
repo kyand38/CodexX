@@ -42,28 +42,22 @@ useEffect(() => {
         <h3 className="game-card__title title is-4">{currentGame.name}</h3>
 
         <div className="content">
-          <p className="tag is-medium">Genres</p>
-          <p className="game-card__genres">{concatGenres(currentGame)}</p>
-
-          <p className="tag is-medium">Platforms</p>
-          <p className="game-card__platforms">{concatPlatforms(currentGame)}</p>
-
-          <p className="tag is-medium">Stores</p>
-          <p className="game-card__platforms">{(currentGame.stores) ? concatStores(game) : "No info available"}</p>
-
+          <p><em className="tag is-medium">Genres:</em>{concatGenres(currentGame)}</p>
+          <p><em className="tag is-medium">Platforms:</em>{concatPlatforms(currentGame)}</p>
+          <p><em className="tag is-medium">Stores:</em>{(currentGame.stores) ? concatStores(currentGame) : "No info available"}</p>
           <div className="game-card__rating tag is-medium">
-            Metacritic: {(game.metacritic) ? currentGame.metacritic : "N/A"}
+            Metacritic: {(currentGame.metacritic) ? currentGame.metacritic : "N/A"}
           </div>
         </div>
       </div>
 
       <footer className="card-footer">
-        <Link to={`/game/${game.id}`} className="game-card__link card-footer-item">
+        <Link to={`/game/${currentGame.id}`} className="game-card__link card-footer-item">
           See Details
         </Link>
         <button
           className="add-to-wishlist card-footer-item"
-          onClick={() => addToWishlist(game)}
+          onClick={() => addToWishlist(currentGame)}
         >
           Add to Wishlist
         </button>
