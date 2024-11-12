@@ -36,7 +36,7 @@ router.get('/games', async (_: Request, res: Response) => {
 });
 
 router.get('/search/:game', async (req: Request, res: Response) => {
-  console.log("hi, you made it to the server");
+  // console.log("hi, you made it to the server");
   try {
     const url = `${process.env.REQUEST_URL}games?search=${req.params.game}&key=${process.env.API_KEY}`;
     console.log(`Fetching URL: ${url}`);
@@ -47,6 +47,20 @@ router.get('/search/:game', async (req: Request, res: Response) => {
     console.log("Error in /game/:search route:", error.message);
     res.status(500).json({ message: error.message });
   }
+});
+
+  // --------------DEVELOPMENT TEAM----------------
+  router.get('/devteam/:id', async (req: Request, res: Response) => {
+    try {
+      const url = `${process.env.REQUEST_URL}games/${req.params.id}/development-team?key=${process.env.API_KEY}`;
+      console.log(`Fetching URL: ${url}`);
+      const response = await fetch(url);
+      const data = await response.json();
+      res.json(data);
+    } catch (error: any) {
+      console.log("Error in /devteam/:id route:", error.message);
+      res.status(500).json({ message: error.message });
+    }
 });
 
 export default router;

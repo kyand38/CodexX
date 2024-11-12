@@ -18,9 +18,8 @@ import {
   // RawgDeveloper,
   // RawgDevelopers,
   // RawgScreenshots,
-  // RawgDevelopmentTeam
+  RawgDevelopmentTeam
 } from '../interfaces/RawgGame';
-
 // const apiKey = import.meta.env.VITE_API_KEY;
 // const apiUrl = import.meta.env.VITE_API_URL;
 
@@ -44,11 +43,19 @@ class RawgService {
 
   async searchGame(gameName: string): Promise<RawgGames> {
     const response = await fetch(`/api/rawg/search/${gameName}`);
-    console.log(response);
+    // console.log(response);
     const data = await response.json();
     return data;
   }
-  // // ----------------GAMES END-----------------------
+  // ----------------GAMES END-----------------------
+
+  // -------------DEVELOPEMENT TEAM BEGIN-----------------
+  async getDevelopmentTeam(id: number): Promise<RawgDevelopmentTeam> {
+    const response = await fetch(`/api/rawg/devteam/${id}`);
+    const data = await response.json();
+    return data;
+  }
+  // --------------DEVELOPMENT TEAM END-------------------
 
   // // ------------------CREATORS BEGIN----------------
   // async getCreators(perPage: number, page: number): Promise<RawgCreators> {
@@ -139,15 +146,7 @@ class RawgService {
   // }
   // // ---------------SCREENSHOTS END-----------------------
 
-  // // -------------DEVELOPEMENT TEAM BEGIN-----------------
-  // async getDevelopmentTeam(id: number): Promise<RawgDevelopmentTeam> {
-  //   const response = await fetch(`${this.REQUEST_URL}/games/${id}/development-team?key=${this.API_KEY}`, {
-  //     method: 'GET',
-  //   });
-  //   const data = await response.json();
-  //   return JSON.parse(data);
-  // }
-  // --------------DEVELOPMENT TEAM END-------------------
+
 }
 const rawgService = new RawgService();
 export { rawgService };

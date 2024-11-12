@@ -3,15 +3,15 @@ import { rawgService } from '../service/rawgService';
 import Header from '../components/Header';
 import SearchBar from '../components/SearchBar';
 import GameCard from '../components/GameCard';
-import { RawgGame, RawgGames } from '../interfaces/RawgGame';
+import { RawgGame } from '../interfaces/RawgGame';
 
 const ProfilePage: React.FC = () => {
   const [games, setGames] = useState<RawgGame[]>([]);
   const [error, setError] = useState<string | null>(null);
 
   const onSearch = async (searchQuery: string) => {
-    console.log('Search for:', searchQuery);
-    // Add filter logic here based on the search query
+    // console.log('Search for:', searchQuery);
+
     try {
       const searchResults = await rawgService.searchGame(searchQuery);
       console.log(searchResults);

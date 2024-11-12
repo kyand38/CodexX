@@ -58,6 +58,11 @@ button:focus-visible {
 
 /* ----- Gloabl Styles ----- */
 
+/* Move main up to account for fixed footer */
+main {
+  padding-bottom: 100px;
+}
+
 /* Button Styles */
 .button.is-link {
   background-color: #0c165b;
@@ -74,6 +79,7 @@ button:focus-visible {
 .has-background-dark {
   background-color: #fff !important;
 }
+
 
 /* ----- Landing Page Styles ----- */
 .hero {
@@ -96,7 +102,7 @@ button:focus-visible {
 .landing-page .container {
   padding: 50px;
   border-radius: 15px;
-  background: linear-gradient(to bottom, #de1f7c, #992694, #2b317f, #0c165b, #000);
+  background: linear-gradient(to bottom, #de1f7c, #992694, #2b317f, rgb(12, 22, 91), #000);
   min-height: auto;
   height: auto;
   display: block;
@@ -117,14 +123,14 @@ p em {
 }
 
 /* Paragraphs Style */
-.container p {
-  color: #e8e8e8;
+.landing-page p {
+  color: #fff;
   font-size: 14px;
   line-height: 1.6;
 }
 
-.container p strong {
-  color: #e8e8e8;
+.landing-page p strong {
+  color: #fff;
   font-size: 14px;
   letter-spacing: 0.025em;
 }
@@ -150,12 +156,13 @@ p em {
   width: 100%;
   max-width: 500px;
   margin: 50px auto;
+  background: linear-gradient(to bottom, #de1f7c, #992694, #2b317f, #0c165b, #000);
 }
 
 .title.is-3.has-text-link.has-text-centered {
   margin-bottom: 25px;
   font-size: 25px;
-  color: #de1f7c !important;
+  color: #fff !important;
 }
 
 .field {
@@ -163,9 +170,8 @@ p em {
 }
 
 .field .label {
-  font-weight: lighter;
-  font-size: 16px;
-  color: #000;
+  font-size: 18px;
+  color: #fff;
 }
 
 .input {
@@ -173,7 +179,16 @@ p em {
 }
 
 .field .button.is-link {
+  background-color: #fff;
+  color: #0c165b;
+  border: 2px solid #fff;
   margin-bottom: 15px;
+}
+
+.field .button.is-link:hover {
+  background-color: #de1f7c;
+  color: #fff;
+  border: 2px solid #de1f7c;
 }
 
 /* ----- Header Page Styles ----- */
@@ -249,7 +264,7 @@ form input[type="text"] {
   padding: 8px 12px;
   font-size: 14px;
   border-radius: 4px;
-  border: 1.5px solid #ccc;
+  border: 1.5px solid #cccccc;
   width: 100%;
 }
 
@@ -278,19 +293,21 @@ form button:hover {
   color: #000;
 }
 
-/* ----- Styles for the GameCards ----- */
 #wishlist-title {
   font-size: 36px;
   color: #de1f7c;
   padding: 25px 0px 25px 0px;
 }
 
+/* ----- Styles for the GameCards ----- */
 .game-card {
   margin: 0 15px;
   transition: transform 0.3s ease;
   border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+
+  box-shadow: 0 4px 8px #b242a8(0, 0, 0, 0.15);
   height: 850px;
+
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -369,6 +386,35 @@ form button:hover {
   gap: 0.75rem;
 }
 
+/* ----- Style for Game Details ----- */
+.specific-hero-body {
+  background-color: #fff;
+}
+
+.hero-body.specific-hero-body {
+  padding: 0px;
+}
+
+.title.is-4.unique-game-name {
+  padding: 25px 0px 0px 0px;
+  font-size: 25px;
+  color: #de1f7c;
+}
+
+.subtitle-metacritic {
+  color: #b242a8;
+  font-size: 20px;
+  padding-bottom: 25px;
+}
+
+.column.is-half.game-info {
+  color: #000;
+}
+
+.column.is-one-third {
+  color: #000;
+}
+
 /* ----- Style for Footer ----- */
 .footer {
   display: flex;
@@ -409,56 +455,62 @@ form button:hover {
 
   /* Button Styles */
   .button.is-link {
-    background-color: #fff;
-    color: #0c165b;
-    border: 2px solid #fff;
-  }
-
-  .button.is-link:hover {
     background-color: #de1f7c;
     color: #fff;
     border: 2px solid #de1f7c;
   }
 
-  .has-background-dark {
-    background-color: #252525 !important;
+  .button.is-link:hover {
+    background-color: #fff;
+    color: #de1f7c;
+    border: 2px solid #de1f7c;
   }
 
-  .field .label {
-    font-weight: lighter;
-    font-size: 16px;
+  .has-background-dark {
+    background-color: #14161a !important;
+  }
+
+  .field .button.is-link {
+    background-color: #de1f7c;
     color: #fff;
+    border: 2px solid #de1f7c;
+  }
+
+  .field .button.is-link:hover {
+    background-color: #fff;
+    color: #de1f7c;
+    border: 2px solid #de1f7c;
   }
 
   .nav-links a[href="/wishlist"] {
-    color: #fff;
-  }
-
-  .nav-links a[href="/wishlist"]:hover {
     color: #de1f7c;
   }
 
+  .nav-links a[href="/wishlist"]:hover {
+    color: #fff;
+  }
+
   #logout-button a {
-    color: #0c165b;
+    color: #fff;
   }
 
   #logout-button:hover a {
-    color: #fff;
+    color: #de1f7c;
   }
 
   form input[type="text"] {
-    border: 1.5px solid #3f3f3f;
+    border: 1.5px solid #cccccc;
   }
 
   form button {
-    background-color: #fff;
-    color: #0c165b;
-    border: 2px solid #fff;
+    background-color: #de1f7c;
+    color: #fff;
+    border: 2px solid #de1f7c;
   }
 
   form button:hover {
-    background-color: #de1f7c;
-    color: #fff;
+    background-color: #fff;
+    color: #de1f7c;
     border: 2px solid #de1f7c;
   }
 
@@ -467,12 +519,12 @@ form button:hover {
   }
 
   .game-card {
-    background-color: #3f3f3f;
+    background-color: #252525;
   }
 
   .tag.is-medium {
-    background-color: #3f3f3f;
-    color: #fff;
+    background-color: #14161a;
+    color: #d7d7d7;
   }
 
   .game-card__genres,
@@ -483,23 +535,43 @@ form button:hover {
 
   .game-card__link,
   .card-footer-item {
-    background-color: #fff;
-    color: #0c165b;
-    border: 2px solid #fff;
-  }
-
-  .game-card__link:hover,
-  .card-footer-item:hover {
     background-color: #de1f7c;
     color: #fff;
     border: 2px solid #de1f7c;
   }
 
-  .footer {
+  .game-card__link:hover,
+  .card-footer-item:hover {
+    background-color: #fff;
+    color: #de1f7c;
+    border: 2px solid #de1f7c;
+  }
+
+  .specific-hero-body {
     background-color: #252525;
+  }
+
+  .column.is-half.game-info {
+    color: #fff;
+  }
+  
+  .column.is-one-third {
+    color: #fff;
+  }
+
+  .footer {
+    background-color: #14161a;
   }
 
   .footer p {
     color: #fff;
   }
+}
+
+@media (prefers-color-scheme: light) {
+
+  .game-detail-title {
+    color:#ffffff;
+  }
+
 }
