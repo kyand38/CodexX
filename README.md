@@ -114,8 +114,9 @@ This application is covered under the following license: [MIT License](https://w
 - b.shurts@outlook.com
 
 **Cheyenna**:
-- 
-- 
+- https://github.com/RaeOfChey
+- https://cheyenna-raelynn-portfolio.netlify.app/
+- cheyennaraelynn@gmail.com
 
 **Kyle**:
 - https://github.com/kyand38/
