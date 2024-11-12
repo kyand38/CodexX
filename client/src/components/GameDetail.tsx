@@ -41,7 +41,7 @@ const GameDetail: React.FC<GameDetailProps> = () => {
   }, [id]);
 
   if (!game) {
-    return <div>Loading...</div>; // Handle loading state
+    return <div id="loading-message">Loading game details...</div>; // Handle loading state
   }
 
   const devTeamString = listDevelopmentTeam(devs);
@@ -49,20 +49,21 @@ const GameDetail: React.FC<GameDetailProps> = () => {
   return (
     <div className="game-detail">
       <section className="hero">
-        <div className="hero-body">
-          <p className="game-detail-title title is-2">{game.name}</p>
-          <p className="game-detail-title subtitle is-4">Metacritic - {game.metacritic}</p>
+        
+        <div className="hero-body specific-hero-body">
+          <p className="title is-4 unique-game-name">{game.name}</p>
+          <p className="subtitle-metacritic">Metacritic - {game.metacritic}</p>
+
         </div>
       </section>
       <div className="columns">
         <div className="column is-two-thirds">
           <img className="game-art" src={game.background_image} alt={`Artwork from ${game.name}`} />
         </div>
-        <div className="column is-one-third">
-          <h1 className="title">
-            Development Team
-          </h1>
-          <ul dangerouslySetInnerHTML={{ __html: devTeamString }}></ul>
+
+        <div className="column is-half game-info">
+          <div dangerouslySetInnerHTML={{ __html: game.description }}></div>
+
         </div>
       </div>
       <div className="columns">
