@@ -8,6 +8,7 @@ export const seedGames = async () => {
     try {
         const games = [
             {
+                id: 638650,
                 title: 'Ghost of Tsushima',
                 genre: 'Action-Adventure',
                 platform: 'Playstation',
@@ -15,6 +16,7 @@ export const seedGames = async () => {
                 imageUrl: 'server/images/placeHolder.png'
             },
             {
+                id: 50734,
                 title: 'Sekiro Shadows Die Twice',
                 genre: 'Souls-like',
                 platform: 'Playstation',
@@ -22,6 +24,7 @@ export const seedGames = async () => {
                 imageUrl: 'server/images/placeHolder.png'
             },
             {
+                id: 23598,
                 title: 'League of Legends',
                 genre: 'MOBA',
                 platform: 'PC',

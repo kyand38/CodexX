@@ -28,15 +28,9 @@ const GameCard: React.FC<GameCardProps> = ({ game }) => {
         <h3 className="game-card__title title is-4">{game.name}</h3>
 
         <div className="content">
-          <p className="tag is-medium">Genres</p>
-          <p className="game-card__genres">{concatGenres(game)}</p>
-
-          <p className="tag is-medium">Platforms</p>
-          <p className="game-card__platforms">{concatPlatforms(game)}</p>
-
-          <p className="tag is-medium">Stores</p>
-          <p className="game-card__platforms">{(game.stores) ? concatStores(game) : "No info available"}</p>
-
+          <p><em className="tag is-medium">Genres:</em>{concatGenres(game)}</p>
+          <p><em className="tag is-medium">Platforms:</em>{concatPlatforms(game)}</p>
+          <p><em className="tag is-medium">Stores:</em>{(game.stores) ? concatStores(game) : "No info available"}</p>
           <div className="game-card__rating tag is-medium">
             Metacritic: {(game.metacritic) ? game.metacritic : "N/A"}
           </div>
