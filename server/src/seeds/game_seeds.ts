@@ -8,7 +8,7 @@ export const seedGames = async () => {
     try {
         const games = [
             {
-                id: 638650,
+                id: 58550,
                 title: 'Ghost of Tsushima',
                 genre: 'Action-Adventure',
                 platform: 'Playstation',
