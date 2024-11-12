@@ -36,21 +36,20 @@ export function listGenres(game: RawgGame): string {
 // }
 
 export function listPlatforms(game: RawgGame): string {
-    const platformArray = game.platforms.map(p => `<li>${p.platform.name}</li>`);
+    const platformArray = game.platforms?.map(p => `<li>${p.platform.name}</li>`);
     const platformString = platformArray.join('');
     return platformString;
 }
 
 export function concatStores(game: RawgGame): string {
-    const storesArray = game.stores.map(s => `${s.store.name}`);
-    const storesString = storesArray.join(', ');
+    const storesArray = game.stores?.map(s => `${s.store.name}`);
+    const storesString = storesArray?.join(', ');
     return storesString;
 }
 
 export function concatPlatforms(game: RawgGame): string {
-    const storesArray = game.platforms.map(s => `${s.platform.name}`);
-    const storesString = storesArray.join(', ');
-    return storesString;
+    const platformArray = game.platforms ? game.platforms?.map(p => `${p.platform.name}`) : [];
+    return platformArray.join(', ') || 'N/A'; // Default to 'N/A' if no platforms
 }
 
 export function listStores(game: RawgGame): string {
