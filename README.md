@@ -110,8 +110,8 @@ This application is covered under the following license: [MIT License](https://w
 
 ## Contact Us
 **Brad**:
-- 
-- 
+- https://github.com/modifiedyoke
+- b.shurts@outlook.com
 
 **Cheyenna**:
 - 
