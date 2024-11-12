@@ -306,7 +306,7 @@ form button:hover {
   transition: transform 0.3s ease;
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
-  height: 850px;
+  height: 660px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
