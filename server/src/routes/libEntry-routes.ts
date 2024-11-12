@@ -12,7 +12,7 @@ const router = express.Router();
 
 // POST endpoint to add a game to the user's library (wishlist)
 router.post('/library-entries', authenticateToken, async (req: AuthenticatedRequest, res: Response) => {
-    const { gameId, rating } = req.body;
+    const { id: gameId, rating } = req.body;
     if (!req.user) return res.status(401).json({ message: 'Unauthorized' });
     const userId = req.user.id;
 

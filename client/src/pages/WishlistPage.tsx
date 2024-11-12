@@ -21,7 +21,7 @@ const WishlistPage: React.FC = () => {
       const data = await response.json();
       const formattedWishlist = data.map((entry: any) => ({
         id: entry.Game?.id || 0,
-        title: entry.Game?.title || 'Untitled',
+        name: entry.Game?.name || 'Untitled',
         genre: entry.Game?.genre || 'Unknown Genre',
         platform: entry.Game?.platform || 'Unknown Platform',
         releaseDate: entry.Game?.releaseDate || '',
