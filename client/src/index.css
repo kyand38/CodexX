@@ -80,6 +80,7 @@ main {
   background-color: #fff !important;
 }
 
+
 /* ----- Landing Page Styles ----- */
 .hero {
   display: flex;
@@ -101,7 +102,7 @@ main {
 .landing-page .container {
   padding: 50px;
   border-radius: 15px;
-  background: linear-gradient(to bottom, #de1f7c, #992694, #2b317f, #0c165b, #000);
+  background: linear-gradient(to bottom, #de1f7c, #992694, #2b317f, rgb(12, 22, 91), #000);
   min-height: auto;
   height: auto;
   display: block;
@@ -303,8 +304,10 @@ form button:hover {
   margin: 0 15px;
   transition: transform 0.3s ease;
   border-radius: 8px;
+
   box-shadow: 0 4px 8px #b242a8(0, 0, 0, 0.15);
   height: 850px;
+
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -563,4 +566,12 @@ form button:hover {
   .footer p {
     color: #fff;
   }
+}
+
+@media (prefers-color-scheme: light) {
+
+  .game-detail-title {
+    color:#ffffff;
+  }
+
 }

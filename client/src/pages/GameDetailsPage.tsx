@@ -8,7 +8,7 @@ import SearchBar from '../components/SearchBar';
 
 const GameDetailsPage: React.FC = () => {
   const { id } = useParams<{ id: string }>(); // Retrieve game ID from URL
-  const [game, setGame] = useState<any | null>(null); // State for storing fetched game data
+  const [game, setGame] = useState<any | null >(null); // State for storing fetched game data
 
   // Fetch game details when page loads
   useEffect(() => {
