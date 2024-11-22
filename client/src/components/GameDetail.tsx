@@ -45,7 +45,6 @@ const GameDetail: React.FC<GameDetailProps> = () => {
        listDevelopmentTeam(devs);
   }
 
-
   return (
     <div className="game-detail">
       <section className="hero">
