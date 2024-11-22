@@ -44,7 +44,7 @@ const GameDetail: React.FC<GameDetailProps> = () => {
     return <div id="loading-message">Loading game details...</div>; // Handle loading state
   }
 
-  const devTeamString = listDevelopmentTeam(devs);
+  // const devTeamString = listDevelopmentTeam(devs);
 
   return (
     <div className="game-detail">
